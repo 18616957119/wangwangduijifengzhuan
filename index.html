@@ -11,11 +11,9 @@
         h1 { font-size: 26px; color: #ff5e89; text-shadow: 1px 1px 2px rgba(0,0,0,0.1) }
         h3 { margin: 15px 0 10px; color: #ff5e89 }
         
-        /* 卡片样式 */
         .dog-card { background: white; padding: 25px; border-radius: 24px; box-shadow: 0 6px 18px rgba(0,0,0,.06); margin-bottom: 20px; border: 3px solid #ffd1e0 }
         .stat-card { background: linear-gradient(135deg, #e8f4fd, #f0f8ff); padding: 20px; border-radius: 20px; margin-bottom: 20px; border: 2px solid #b8daff }
         
-        /* 小狗动画 - 健康状态 */
         .dog-container { position: relative; width: 120px; height: 120px; margin: 10px auto }
         .dog-alive { 
             font-size: 70px; 
@@ -31,7 +29,6 @@
             100% { transform: translateY(0) rotate(-3deg) scale(1) }
         }
         
-        /* 死亡状态 - 墓碑 */
         .dog-dead .dog-container { animation: none }
         .tombstone { 
             font-size: 80px; 
@@ -44,18 +41,15 @@
             75% { transform: rotate(2deg) }
         }
         
-        /* 心跳效果 */
         .heart-beat { animation: heartBeat 1s infinite }
         @keyframes heartBeat {
             0%, 100% { transform: scale(1) }
             50% { transform: scale(1.1) }
         }
         
-        /* 状态和食物 */
         .food-box { font-size: 20px; margin: 10px 0; background: #fff5f8; padding: 10px 20px; border-radius: 15px; display: inline-block }
         .food-num { color: #ff5e89; font-weight: bold; font-size: 28px }
         
-        /* 按钮样式 */
         .btn { padding: 12px 22px; margin: 6px; border: none; border-radius: 16px; font-weight: bold; cursor: pointer; font-size: 14px; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.15) }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2) }
         .btn:active { transform: translateY(0) }
@@ -66,31 +60,26 @@
         .btn-orange { background: linear-gradient(135deg, #ffb980, #ffa65d); color: white }
         .btn-feed { background: linear-gradient(135deg, #ff6b9d, #ff527b); color: white }
         .btn-purple { background: linear-gradient(135deg, #c792ea, #b071d9); color: white }
+        .btn-red { background: linear-gradient(135deg, #ff6b6b, #ff4757); color: white }
         
-        /* 输入框 */
         .input-box { padding: 12px; width: 220px; border-radius: 12px; border: 2px solid #ffd1e0; text-align: center; font-size: 16px; outline: none; transition: border-color 0.2s }
         .input-box:focus { border-color: #ff5e89 }
         
-        /* 错题模块 */
         .weak-box { background: linear-gradient(135deg, #fff5f8, #fff0f5); padding: 15px; border-radius: 18px; margin: 10px auto; max-width: 450px; border: 2px dashed #ff8fb3; text-align: left }
         .topic-item { background: white; padding: 16px; border-radius: 18px; margin: 10px auto; max-width: 450px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s }
         .topic-item:hover { transform: translateY(-2px) }
         .level-tag { font-size: 12px; padding: 2px 8px; background: linear-gradient(135deg, #e8f4fd, #d0e8ff); border-radius: 8px; margin-left: 4px; color: #5ba3d0 }
         
-        /* 超时提醒 */
         .remind-tip { font-size: 13px; color: #ff5e89; margin-top: 10px; padding: 8px 15px; background: #fff0f5; border-radius: 10px; display: inline-block }
         
-        /* 统计面板 */
         .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px }
         .stat-item { background: white; padding: 12px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08) }
         .stat-value { font-size: 26px; font-weight: bold; background: linear-gradient(135deg, #ff8fb3, #ff5e89); -webkit-background-clip: text; -webkit-text-fill-color: transparent }
         .stat-label { font-size: 12px; color: #666; margin-top: 5px }
         
-        /* 进度条 */
         .progress-bar { width: 100%; height: 10px; background: #f0f0f0; border-radius: 5px; margin-top: 8px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1) }
         .progress-fill { height: 100%; background: linear-gradient(90deg, #ff8fb3, #ff5e89, #ff6b9d); border-radius: 5px; transition: width 0.3s; box-shadow: 0 0 10px rgba(255,105,180,0.5) }
         
-        /* 自定义模态框 */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(3px) }
         .modal { background: white; padding: 30px; border-radius: 24px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); animation: modalPop 0.3s ease-out }
         @keyframes modalPop {
@@ -102,7 +91,6 @@
         .modal input:focus { border-color: #ff5e89 }
         .modal-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 15px }
         
-        /* 答题反馈 */
         .feedback { font-size: 18px; font-weight: bold; padding: 15px; border-radius: 12px; margin: 10px 0; animation: feedbackPop 0.3s ease-out }
         .feedback-correct { background: linear-gradient(135deg, #d4edda, #c3e6cb); color: #155724; border: 2px solid #28a745 }
         .feedback-wrong { background: linear-gradient(135deg, #f8d7da, #f5c6cb); color: #721c24; border: 2px solid #dc3545 }
@@ -111,10 +99,8 @@
             to { transform: scale(1); opacity: 1 }
         }
         
-        /* 数据管理卡片 */
         .backup-card { background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 20px; border-radius: 20px; margin-bottom: 20px; border: 2px solid #dee2e6 }
         
-        /* 装饰元素 */
         .sparkle { position: fixed; pointer-events: none; animation: sparkleFloat 2s infinite; z-index: 999 }
         @keyframes sparkleFloat {
             0%, 100% { transform: translateY(0) rotate(0deg); opacity: 1 }
@@ -128,7 +114,6 @@
         <p style="color: #ff5e89; margin-top: 8px; font-size: 14px;">上海五四学制 · 六七年级英语专项</p>
     </div>
     
-    <!-- 小狗状态卡片 -->
     <div class="dog-card" id="dogCard">
         <div class="dog-container" id="dogContainer">
             <div class="dog-alive heart-beat" id="dogEmoji">🐕</div>
@@ -142,7 +127,6 @@
         <div class="remind-tip" id="tip"></div>
     </div>
     
-    <!-- 学习统计面板 -->
     <div class="stat-card">
         <h3>📊 学习统计</h3>
         <div class="stat-grid">
@@ -171,12 +155,12 @@
         </div>
     </div>
     
-    <!-- 数据备份 -->
     <div class="backup-card">
         <h3>💾 数据管理</h3>
         <p style="font-size: 13px; color: #666; margin-bottom: 10px;">定期备份，防止数据丢失</p>
         <button class="btn btn-blue" onclick="exportData()">📤 导出备份</button>
         <button class="btn btn-green" onclick="document.getElementById('importFile').click()">📥 恢复备份</button>
+        <button class="btn btn-red" onclick="clearAllData()">🗑️ 清理缓存</button>
         <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(this)">
     </div>
     
@@ -191,7 +175,6 @@
     <h3>🎯 开始刷题（单词可多刷，句子限刷）</h3>
     <div id="topicList"></div>
     
-    <!-- 自定义模态框 -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <h2 id="modalTitle">标题</h2>
@@ -201,7 +184,6 @@
     </div>
     
     <script>
-        // 核心数据
         let food = +localStorage.getItem('food') || 100
         let dogAlive = localStorage.getItem('dogAlive') !== 'false'
         let weakTopics = JSON.parse(localStorage.getItem('weakTopics')) || []
@@ -212,16 +194,13 @@
         let answerRecord = JSON.parse(localStorage.getItem('answerRecord')) || {}
         let dayAddCount = JSON.parse(localStorage.getItem('dayAddCount')) || {}
         
-        // 统计数据
         let totalCorrect = +localStorage.getItem('totalCorrect') || 0
         let totalAnswered = +localStorage.getItem('totalAnswered') || 0
         let streak = +localStorage.getItem('streak') || 0
         let lastStreakDate = localStorage.getItem('lastStreakDate') || ''
         let modulesClearedCount = +localStorage.getItem('modulesClearedCount') || 0
         
-        // 上海五四学制 六七年级题库（12 个模块）
         const topics = [
-            // === 六年级上册 ===
             {id:1,name:"一般现在时",level:"六上",type:"normal",questions:[
                 {q:"He ___ (like) playing basketball.",a:"likes"},
                 {q:"She ___ (go) to school by bus every day.",a:"goes"},
@@ -250,8 +229,6 @@
                 {q:"我乘公交车去学校。（英文）",a:"I go to school by bus."},
                 {q:"现在几点了？（英文）",a:"What time is it now?"}
             ]},
-            
-            // === 六年级下册 ===
             {id:5,name:"一般过去时",level:"六下必考",type:"normal",questions:[
                 {q:"I ___ (go) to the park yesterday.",a:"went"},
                 {q:"She ___ (do) her homework last night.",a:"did"},
@@ -280,8 +257,6 @@
                 {q:"我们必须遵守规则。（英文）",a:"We must follow the rules."},
                 {q:"不要在教室里跑。（英文）",a:"Don't run in the classroom."}
             ]},
-            
-            // === 七年级上册 ===
             {id:9,name:"人称代词",level:"七上",type:"normal",questions:[
                 {q:"we 的宾格",a:"us"},
                 {q:"they 的宾格",a:"them"},
@@ -312,12 +287,10 @@
             ]}
         ]
         
-        // 初始化
         checkStreak()
         checkDogStarve()
         renderAll()
         
-        // 定时检测：每分钟更新状态
         setInterval(() => {
             checkDogStarve()
             renderAll()
@@ -326,20 +299,14 @@
         document.getElementById('checkBtn').onclick = dailyCheck
         document.getElementById('feedBtn').onclick = feedDog
         
-        // 检查连续打卡
         function checkStreak() {
             let yesterday = new Date(Date.now() - 86400000).toDateString()
-            if (lastCheck === yesterday) {
-                // 昨天打卡了，今天继续则保持连胜
-            } else if (lastCheck !== today) {
-                // 今天还没打卡，如果昨天也没打，重置连胜
-                if (lastCheck !== yesterday) {
-                    streak = 0
-                }
+            if (lastCheck === yesterday) {}
+            else if (lastCheck !== today) {
+                if (lastCheck !== yesterday) streak = 0
             }
         }
         
-        // 每日打卡 +10
         function dailyCheck() {
             if (lastCheck === today) return
             lastCheck = today
@@ -351,7 +318,6 @@
             showModal('success', '✅ 打卡成功！', `连续打卡 ${streak} 天，+10 狗粮！`)
         }
         
-        // 创建 sparkle 特效
         function createSparkles() {
             for (let i = 0; i < 10; i++) {
                 const sparkle = document.createElement('div')
@@ -365,7 +331,6 @@
             }
         }
         
-        // 手动喂狗
         function feedDog() {
             if (!dogAlive) {
                 showModal('error', '🐶 小狗已饿晕', '请先使用复活功能~')
@@ -382,7 +347,6 @@
             showModal('success', '✅ 喂食成功！', '小狗吃饱啦~ 继续加油！')
         }
         
-        // 检测饥饿死亡
         function checkDogStarve() {
             let now = Date.now()
             let gap = now - lastFeedTime
@@ -398,7 +362,6 @@
             document.getElementById('tip').innerText = tipText
         }
         
-        // 录入错题
         function addWeak() {
             let key = today + '_add'
             dayAddCount[key] = dayAddCount[key] || 0
@@ -420,7 +383,6 @@
             showModal('success', '✅ 标记成功！', `今日已录 ${dayAddCount[key]}/2 个，+20 狗粮`)
         }
         
-        // 刷题逻辑
         function doTest(id) {
             if (!dogAlive) {
                 showModal('error', '🐶 小狗已饿晕', '先喂食或复活小狗~')
@@ -443,7 +405,6 @@
             showAnswerModal(q, t, id)
         }
         
-        // 答题模态框
         function showAnswerModal(question, topic, id) {
             const overlay = document.getElementById('modalOverlay')
             const modal = overlay.querySelector('.modal')
@@ -469,7 +430,6 @@
             modal.dataset.question = JSON.stringify({ q: question.q, a: question.a, id: id, type: topic.type })
         }
         
-        // 提交答案
         function submitAnswer() {
             const modal = document.querySelector('#modalOverlay .modal')
             const questionData = JSON.parse(modal.dataset.question)
@@ -509,10 +469,7 @@
                 feedback.innerHTML = `❌ 错误！-10 狗粮<br><small style="color: #721c24;">正确答案：${questionData.a}</small>`
                 feedback.style.display = 'block'
                 
-                if (!weakTopics.includes(questionData.id)) {
-                    weakTopics.push(questionData.id)
-                }
-                
+                if (!weakTopics.includes(questionData.id)) weakTopics.push(questionData.id)
                 setTimeout(closeModal, 1500)
             }
             
@@ -520,7 +477,6 @@
             renderAll()
         }
         
-        // 复活功能（仅张霆轩）
         function adminRevive() {
             food = 500
             dogAlive = true
@@ -531,7 +487,6 @@
             showModal('success', '🎉 复活成功！', '小狗恢复活力~ 继续加油！')
         }
         
-        // 复活模态框
         function openReviveModal() {
             const overlay = document.getElementById('modalOverlay')
             document.getElementById('modalTitle').innerText = '🔐 小狗复活'
@@ -576,7 +531,6 @@
             overlay.style.display = 'flex'
         }
         
-        // 数据导出
         function exportData() {
             const data = {
                 food, dogAlive, weakTopics, lastCheck, lastFeedTime,
@@ -594,7 +548,6 @@
             showModal('success', '✅ 导出成功', '备份文件已下载~')
         }
         
-        // 数据导入
         function importData(input) {
             const file = input.files[0]
             if (!file) return
@@ -625,8 +578,14 @@
             reader.readAsText(file)
             input.value = ''
         }
+
+        // 新增：一键清理缓存 / 重置数据
+        function clearAllData() {
+            if(!confirm("⚠️ 确定要清理所有数据吗？积分、小狗状态、错题将全部重置！")) return
+            localStorage.clear()
+            location.reload()
+        }
         
-        // 渲染全部
         function renderAll() {
             document.getElementById('food').innerText = food
             
@@ -637,20 +596,17 @@
                 document.getElementById('dogStatus').style.color = "#28a745"
                 dogContainer.innerHTML = '<div class="dog-alive heart-beat">🐕</div>'
                 document.getElementById('dogCard').classList.remove("dog-dead")
-                document.querySelectorAll('.btn').forEach(b => b.disabled = false)
             } else {
                 document.getElementById('dogStatus').innerText = "状态：已饿晕 💀"
                 document.getElementById('dogStatus').style.color = "#dc3545"
                 dogContainer.innerHTML = '<div class="tombstone">🪦</div>'
                 document.getElementById('dogCard').classList.add("dog-dead")
-                document.querySelectorAll('.btn').forEach(b => b.disabled = true)
-                document.getElementById('feedBtn').disabled = false
             }
             
-            if (lastCheck === today) {
-                document.getElementById('checkBtn').disabled = true
-                document.getElementById('checkBtn').innerText = "✅ 今日已打卡"
-            }
+            // 修复：只禁用刷题/打卡/喂食，不禁用复活/导出/清理缓存
+            document.getElementById('checkBtn').disabled = !dogAlive || lastCheck === today
+            document.getElementById('feedBtn').disabled = !dogAlive
+            document.querySelectorAll('.topic-item .btn').forEach(b => b.disabled = !dogAlive)
             
             // 更新统计
             document.getElementById('todayCount').innerText = Object.values(dayAnswerCount).reduce((a, b) => a + b, 0)
@@ -691,7 +647,7 @@
                             <div class="progress-fill" style="width: ${progress}%"></div>
                         </div>
                     </div>
-                    <button class="btn btn-orange" onclick="doTest(${t.id})" ${!dogAlive ? 'disabled' : ''}>开始刷题</button>
+                    <button class="btn btn-orange" onclick="doTest(${t.id})">开始刷题</button>
                 </div>`
             }).join('')
             document.getElementById('topicList').innerHTML = html
