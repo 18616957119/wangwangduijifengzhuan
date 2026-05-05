@@ -3,187 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>汪汪队疾风传 - 英语错题本</title>
+    <title>英语错题巩固系统</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft YaHei", sans-serif }
-        body { background: linear-gradient(135deg, #fdf6fb 0%, #fff0f5 100%); text-align: center; padding: 20px; color: #333; min-height: 100vh; }
-        .title-box { background: linear-gradient(135deg, #ffd1e0, #ffb6c1); padding: 14px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(255,105,180,0.3) }
-        h1 { font-size: 26px; color: #ff5e89; text-shadow: 1px 1px 2px rgba(0,0,0,0.1) }
-        h3 { margin: 15px 0 10px; color: #ff5e89 }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC","Microsoft YaHei",sans-serif; }
+        body { background: #f6f7f9; color: #333; min-height: 100vh; padding: 20px 16px; line-height: 1.6; }
+        .wrap { max-width: 480px; margin: 0 auto; }
+        h1 { font-size: 24px; font-weight: 600; color: #222; text-align: center; margin-bottom: 20px; }
+        h3 { font-size: 16px; font-weight: 500; color: #444; margin: 16px 0 10px; }
+
+        /* 极简卡片 */
+        .card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: none; }
         
-        .dog-card { background: white; padding: 25px; border-radius: 24px; box-shadow: 0 6px 18px rgba(0,0,0,.06); margin-bottom: 20px; border: 3px solid #ffd1e0 }
-        .stat-card { background: linear-gradient(135deg, #e8f4fd, #f0f8ff); padding: 20px; border-radius: 20px; margin-bottom: 20px; border: 2px solid #b8daff }
-        
-        .dog-container { position: relative; width: 120px; height: 120px; margin: 10px auto }
-        .dog-alive { 
-            font-size: 70px; 
-            animation: dogJump 0.6s infinite alternate ease-in-out;
-            display: inline-block;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2))
-        }
-        @keyframes dogJump {
-            0% { transform: translateY(0) rotate(-3deg) scale(1) }
-            25% { transform: translateY(-15px) rotate(0deg) scale(1.05) }
-            50% { transform: translateY(-8px) rotate(3deg) scale(1) }
-            75% { transform: translateY(-20px) rotate(0deg) scale(1.05) }
-            100% { transform: translateY(0) rotate(-3deg) scale(1) }
-        }
-        
-        .dog-dead .dog-container { animation: none }
-        .tombstone { 
-            font-size: 80px; 
-            animation: tombstoneShake 3s infinite ease-in-out;
-            display: inline-block;
-        }
-        @keyframes tombstoneShake {
-            0%, 100% { transform: rotate(0deg) }
-            25% { transform: rotate(-2deg) }
-            75% { transform: rotate(2deg) }
-        }
-        
-        .heart-beat { animation: heartBeat 1s infinite }
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1) }
-            50% { transform: scale(1.1) }
-        }
-        
-        .food-box { font-size: 20px; margin: 10px 0; background: #fff5f8; padding: 10px 20px; border-radius: 15px; display: inline-block }
-        .food-num { color: #ff5e89; font-weight: bold; font-size: 28px }
-        
-        .btn { padding: 12px 22px; margin: 6px; border: none; border-radius: 16px; font-weight: bold; cursor: pointer; font-size: 14px; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.15) }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2) }
-        .btn:active { transform: translateY(0) }
-        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none }
-        .btn-pink { background: linear-gradient(135deg, #ff8fb3, #ff6b9d); color: white }
-        .btn-blue { background: linear-gradient(135deg, #73bcff, #5ba3d0); color: white }
-        .btn-green { background: linear-gradient(135deg, #6cd197, #5bc17f); color: white }
-        .btn-orange { background: linear-gradient(135deg, #ffb980, #ffa65d); color: white }
-        .btn-feed { background: linear-gradient(135deg, #ff6b9d, #ff527b); color: white }
-        .btn-purple { background: linear-gradient(135deg, #c792ea, #b071d9); color: white }
-        .btn-red { background: linear-gradient(135deg, #ff6b6b, #ff4757); color: white }
-        
-        .input-box { padding: 12px; width: 220px; border-radius: 12px; border: 2px solid #ffd1e0; text-align: center; font-size: 16px; outline: none; transition: border-color 0.2s }
-        .input-box:focus { border-color: #ff5e89 }
-        
-        .weak-box { background: linear-gradient(135deg, #fff5f8, #fff0f5); padding: 15px; border-radius: 18px; margin: 10px auto; max-width: 450px; border: 2px dashed #ff8fb3; text-align: left }
-        .topic-item { background: white; padding: 16px; border-radius: 18px; margin: 10px auto; max-width: 450px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s }
-        .topic-item:hover { transform: translateY(-2px) }
-        .level-tag { font-size: 12px; padding: 2px 8px; background: linear-gradient(135deg, #e8f4fd, #d0e8ff); border-radius: 8px; margin-left: 4px; color: #5ba3d0 }
-        
-        .remind-tip { font-size: 13px; color: #ff5e89; margin-top: 10px; padding: 8px 15px; background: #fff0f5; border-radius: 10px; display: inline-block }
-        
-        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px }
-        .stat-item { background: white; padding: 12px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08) }
-        .stat-value { font-size: 26px; font-weight: bold; background: linear-gradient(135deg, #ff8fb3, #ff5e89); -webkit-background-clip: text; -webkit-text-fill-color: transparent }
-        .stat-label { font-size: 12px; color: #666; margin-top: 5px }
-        
-        .progress-bar { width: 100%; height: 10px; background: #f0f0f0; border-radius: 5px; margin-top: 8px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1) }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #ff8fb3, #ff5e89, #ff6b9d); border-radius: 5px; transition: width 0.3s; box-shadow: 0 0 10px rgba(255,105,180,0.5) }
-        
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(3px) }
-        .modal { background: white; padding: 30px; border-radius: 24px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); animation: modalPop 0.3s ease-out }
-        @keyframes modalPop {
-            from { transform: scale(0.8); opacity: 0 }
-            to { transform: scale(1); opacity: 1 }
-        }
-        .modal h2 { color: #ff5e89; margin-bottom: 15px }
-        .modal input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 12px; font-size: 16px; margin: 10px 0; outline: none; transition: border-color 0.2s }
-        .modal input:focus { border-color: #ff5e89 }
-        .modal-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 15px }
-        
-        .feedback { font-size: 18px; font-weight: bold; padding: 15px; border-radius: 12px; margin: 10px 0; animation: feedbackPop 0.3s ease-out }
-        .feedback-correct { background: linear-gradient(135deg, #d4edda, #c3e6cb); color: #155724; border: 2px solid #28a745 }
-        .feedback-wrong { background: linear-gradient(135deg, #f8d7da, #f5c6cb); color: #721c24; border: 2px solid #dc3545 }
-        @keyframes feedbackPop {
-            from { transform: scale(0.9); opacity: 0 }
-            to { transform: scale(1); opacity: 1 }
-        }
-        
-        .backup-card { background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 20px; border-radius: 20px; margin-bottom: 20px; border: 2px solid #dee2e6 }
-        
-        .sparkle { position: fixed; pointer-events: none; animation: sparkleFloat 2s infinite; z-index: 999 }
-        @keyframes sparkleFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 1 }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5 }
-        }
+        /* 小狗样式 */
+        .dog-container { position: relative; width: 100px; height: 100px; margin: 0 auto 10px; }
+        .dog-alive { font-size: 60px; display: inline-block; }
+        .tombstone { font-size: 65px; display: inline-block; }
+        .status-text { font-size: 16px; color: #666; margin-bottom: 10px; }
+        .food-box { font-size: 16px; color: #444; margin: 8px 0; }
+        .food-num { font-size: 24px; font-weight: 600; color: #222; }
+        .remind-tip { font-size: 13px; color: #888; margin-top: 10px; }
+
+        /* 按钮 极简统一风格 */
+        .btn { padding: 10px 18px; margin: 4px; border: none; border-radius: 12px; font-size: 14px; cursor: pointer; transition: all 0.2s; background: #eef0f3; color: #333; }
+        .btn:hover { background: #e0e3e8; }
+        .btn:disabled { background: #f2f3f5; color: #bbb; cursor: not-allowed; }
+        .btn-primary { background: #5c7cfa; color: #fff; }
+        .btn-primary:hover { background: #4b68e0; }
+        .btn-success { background: #51cf66; color: #fff; }
+        .btn-warning { background: #ff922b; color: #fff; }
+        .btn-danger { background: #ff6b6b; color: #fff; }
+
+        .input-box { width: 200px; padding: 10px 12px; border-radius: 10px; border: 1px solid #dcdfe6; font-size: 15px; text-align: center; outline: none; }
+        .input-box:focus { border-color: #5c7cfa; }
+
+        .weak-box { background: #fafbfc; padding: 14px; border-radius: 14px; margin: 10px 0; border: 1px solid #ebeef5; font-size: 14px; color: #555; }
+        .topic-item { background: #fff; padding: 14px; border-radius: 14px; margin: 10px 0; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 6px rgba(0,0,0,0.04); }
+        .level-tag { font-size: 12px; padding: 2px 6px; background: #f2f3f5; border-radius: 6px; color: #666; margin-left: 4px; }
+        .progress-bar { width: 100%; height: 6px; background: #eee; border-radius: 3px; margin-top: 6px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #5c7cfa; border-radius: 3px; transition: width 0.3s; }
+
+        .stat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 10px; }
+        .stat-item { background: #fafbfc; padding: 12px; border-radius: 12px; text-align: center; }
+        .stat-value { font-size: 22px; font-weight: 600; color: #222; }
+        .stat-label { font-size: 12px; color: #888; margin-top: 4px; }
+
+        hr { border: none; border-top: 1px solid #ebeef5; margin: 20px 0; }
+
+        /* 弹窗 */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .modal { background: #fff; width: 90%; max-width: 360px; padding: 24px; border-radius: 16px; text-align: center; }
+        .modal h2 { font-size: 18px; margin-bottom: 12px; color: #222; }
+        .modal input { width: 100%; padding: 10px; border: 1px solid #dcdfe6; border-radius: 10px; margin: 10px 0; font-size: 15px; outline: none; }
+        .modal-buttons { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+
+        .feedback { font-size: 16px; padding: 12px; border-radius: 10px; margin: 10px 0; }
+        .feedback-correct { background: #ecfaf1; color: #2b8a3e; border: 1px solid #b2f2bb; }
+        .feedback-wrong { background: #fff5f5; color: #c92a2a; border: 1px solid #ffc9c9; }
+
+        input[type="file"] { display: none; }
     </style>
 </head>
 <body>
-    <div class="title-box">
-        <h1>🐶 汪汪队疾风传</h1>
-        <p style="color: #ff5e89; margin-top: 8px; font-size: 14px;">上海五四学制 · 六七年级英语专项</p>
-    </div>
-    
-    <div class="dog-card" id="dogCard">
-        <div class="dog-container" id="dogContainer">
-            <div class="dog-alive heart-beat" id="dogEmoji">🐕</div>
+    <div class="wrap">
+        <h1>🐶 英语错题巩固系统</h1>
+
+        <!-- 小狗状态 -->
+        <div class="card" id="dogCard">
+            <div class="dog-container" id="dogContainer">
+                <div class="dog-alive" id="dogEmoji">🐕</div>
+            </div>
+            <div class="status-text" id="dogStatus">状态：正常</div>
+            <div class="food-box">狗粮：<span class="food-num" id="food">100</span></div>
+            <div class="remind-tip" id="tip"></div>
+            <div style="margin-top:12px;">
+                <button class="btn btn-primary" id="checkBtn">📅 每日打卡 +10</button>
+                <button class="btn btn-warning" id="feedBtn">🥣 喂食 -100</button>
+                <button class="btn" onclick="openReviveModal()">🔓 复活入口</button>
+            </div>
         </div>
-        <div id="dogStatus" style="font-size: 18px; font-weight: bold; color: #ff5e89; margin: 10px 0;">状态：健康开心</div>
-        <div class="food-box">🍖 狗粮：<span class="food-num" id="food">100</span></div>
+
+        <!-- 统计面板 -->
+        <div class="card">
+            <h3>📊 学习统计</h3>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="todayCount">0</div>
+                    <div class="stat-label">今日答题</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="accuracy">0%</div>
+                    <div class="stat-label">正确率</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="streak">0</div>
+                    <div class="stat-label">连续打卡</div>
+                </div>
+            </div>
+            <div class="stat-grid" style="margin-top:10px;">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalCorrect">0</div>
+                    <div class="stat-label">累计正确</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="modulesCleared">0</div>
+                    <div class="stat-label">攻克模块</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数据管理 -->
+        <div class="card">
+            <h3>💾 数据管理</h3>
+            <div style="margin-top:8px;">
+                <button class="btn btn-success" onclick="exportData()">📤 导出备份</button>
+                <button class="btn btn-primary" onclick="document.getElementById('importFile').click()">📥 恢复备份</button>
+                <button class="btn btn-danger" onclick="clearAllData()">🗑️ 清理缓存</button>
+                <input type="file" id="importFile" accept=".json" onchange="importData(this)">
+            </div>
+        </div>
+
+        <!-- 标记错题模块 -->
+        <h3>📒 标记错题模块（每日上限2个）</h3>
+        <input class="input-box" id="tid" placeholder="输入编号 1-12" maxlength="2">
         <br>
-        <button class="btn btn-pink" id="checkBtn">📅 每日打卡 +10</button>
-        <button class="btn btn-feed" id="feedBtn">🥣 喂小狗（-100 狗粮）</button>
-        <button class="btn btn-blue" onclick="openReviveModal()">💳 找霆轩复活</button>
-        <div class="remind-tip" id="tip"></div>
+        <button class="btn btn-success" onclick="addWeak()" style="margin-top:8px;">✅ 标记错题 +20</button>
+        <div id="weakList" class="weak-box">我的错题模块：暂无</div>
+
+        <hr>
+
+        <h3>🎯 开始刷题</h3>
+        <div id="topicList"></div>
     </div>
-    
-    <div class="stat-card">
-        <h3>📊 学习统计</h3>
-        <div class="stat-grid">
-            <div class="stat-item">
-                <div class="stat-value" id="todayCount">0</div>
-                <div class="stat-label">今日答题</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value" id="accuracy">0%</div>
-                <div class="stat-label">正确率</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value" id="streak">0</div>
-                <div class="stat-label">连续打卡</div>
-            </div>
-        </div>
-        <div style="margin-top: 15px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-            <div class="stat-item">
-                <div class="stat-value" id="totalCorrect">0</div>
-                <div class="stat-label">累计正确</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value" id="modulesCleared">0</div>
-                <div class="stat-label">攻克模块</div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="backup-card">
-        <h3>💾 数据管理</h3>
-        <p style="font-size: 13px; color: #666; margin-bottom: 10px;">定期备份，防止数据丢失</p>
-        <button class="btn btn-blue" onclick="exportData()">📤 导出备份</button>
-        <button class="btn btn-green" onclick="document.getElementById('importFile').click()">📥 恢复备份</button>
-        <button class="btn btn-red" onclick="clearAllData()">🗑️ 清理缓存</button>
-        <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(this)">
-    </div>
-    
-    <h3>📒 录入错题模块（每日最多 2 个）</h3>
-    <input class="input-box" id="tid" placeholder="输入模块编号：1-12" maxlength="2">
-    <br>
-    <button class="btn btn-green" onclick="addWeak()">✅ 标记错题 +20/个</button>
-    <div id="weakList" class="weak-box">我的错题模块：暂无</div>
-    
-    <hr style="margin: 20px 0; border: none; border-top: 2px dashed #ffd1e0;">
-    
-    <h3>🎯 开始刷题（单词可多刷，句子限刷）</h3>
-    <div id="topicList"></div>
-    
+
+    <!-- 弹窗层 -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
-            <h2 id="modalTitle">标题</h2>
+            <h2 id="modalTitle"></h2>
             <div id="modalContent"></div>
             <div class="modal-buttons" id="modalButtons"></div>
         </div>
     </div>
-    
+
     <script>
+        // 核心数据
         let food = +localStorage.getItem('food') || 100
         let dogAlive = localStorage.getItem('dogAlive') !== 'false'
         let weakTopics = JSON.parse(localStorage.getItem('weakTopics')) || []
@@ -193,120 +155,144 @@
         let dayAnswerCount = JSON.parse(localStorage.getItem('dayAnswerCount')) || {}
         let answerRecord = JSON.parse(localStorage.getItem('answerRecord')) || {}
         let dayAddCount = JSON.parse(localStorage.getItem('dayAddCount')) || {}
-        
+
         let totalCorrect = +localStorage.getItem('totalCorrect') || 0
         let totalAnswered = +localStorage.getItem('totalAnswered') || 0
         let streak = +localStorage.getItem('streak') || 0
-        let lastStreakDate = localStorage.getItem('lastStreakDate') || ''
         let modulesClearedCount = +localStorage.getItem('modulesClearedCount') || 0
-        
+
+        // 题库扩容 + 支持多答案数组
         const topics = [
-            {id:1,name:"一般现在时",level:"六上",type:"normal",questions:[
-                {q:"He ___ (like) playing basketball.",a:"likes"},
-                {q:"She ___ (go) to school by bus every day.",a:"goes"},
-                {q:"They ___ (not watch) TV on weekdays.",a:"don't watch"},
-                {q:"___ you ___ (have) breakfast at 7?",a:"Do have"},
-                {q:"My father ___ (work) in a hospital.",a:"works"}
-            ]},
-            {id:2,name:"现在进行时",level:"六上",type:"normal",questions:[
-                {q:"Look! They ___ (play) football.",a:"are playing"},
-                {q:"Listen! She ___ (sing) a song.",a:"is singing"},
-                {q:"I ___ (do) my homework now.",a:"am doing"},
-                {q:"What ___ you ___ (do) at the moment?",a:"are doing"},
-                {q:"The bus ___ (come).",a:"is coming"}
-            ]},
-            {id:3,name:"六上核心词汇",level:"六上单词",type:"word",questions:[
-                {q:"不同的（英文）",a:"different"},
-                {q:"相同的（英文）",a:"same"},
-                {q:"通常（英文）",a:"usually"},
-                {q:"有时（英文）",a:"sometimes"},
-                {q:"从不（英文）",a:"never"}
-            ]},
-            {id:4,name:"六上 Unit1-3 句型",level:"六上课文",type:"normal",questions:[
-                {q:"你通常几点起床？（英文）",a:"What time do you usually get up?"},
-                {q:"我通常七点起床。（英文）",a:"I usually get up at seven."},
-                {q:"你怎样去学校？（英文）",a:"How do you go to school?"},
-                {q:"我乘公交车去学校。（英文）",a:"I go to school by bus."},
-                {q:"现在几点了？（英文）",a:"What time is it now?"}
-            ]},
-            {id:5,name:"一般过去时",level:"六下必考",type:"normal",questions:[
-                {q:"I ___ (go) to the park yesterday.",a:"went"},
-                {q:"She ___ (do) her homework last night.",a:"did"},
-                {q:"They ___ (have) a party last weekend.",a:"had"},
-                {q:"He ___ (eat) an apple this morning.",a:"ate"},
-                {q:"We ___ (take) photos yesterday.",a:"took"}
-            ]},
-            {id:6,name:"过去分词",level:"六下必考",type:"normal",questions:[
-                {q:"go 的过去分词",a:"gone"},
-                {q:"do 的过去分词",a:"done"},
-                {q:"have 的过去分词",a:"had"},
-                {q:"eat 的过去分词",a:"eaten"},
-                {q:"take 的过去分词",a:"taken"}
-            ]},
-            {id:7,name:"六下核心词汇",level:"六下单词",type:"word",questions:[
-                {q:"野营（英文）",a:"camp"},
-                {q:"杂志（英文）",a:"magazine"},
-                {q:"更好的（英文）",a:"better"},
-                {q:"更快的（英文）",a:"faster"},
-                {q:"更小的（英文）",a:"smaller"}
-            ]},
-            {id:8,name:"六下 Unit1-3 默写",level:"六下课文",type:"normal",questions:[
-                {q:"我早上七点十分起床。（英文）",a:"I get up at seven ten in the morning."},
-                {q:"我的生日在五月二日。（英文）",a:"My birthday is on May 2nd."},
-                {q:"你上周末做了什么？（英文）",a:"What did you do last weekend?"},
-                {q:"我们必须遵守规则。（英文）",a:"We must follow the rules."},
-                {q:"不要在教室里跑。（英文）",a:"Don't run in the classroom."}
-            ]},
-            {id:9,name:"人称代词",level:"七上",type:"normal",questions:[
-                {q:"we 的宾格",a:"us"},
-                {q:"they 的宾格",a:"them"},
-                {q:"my 的名词性物主代词",a:"mine"},
-                {q:"her 的名词性物主代词",a:"hers"},
-                {q:"their 的名词性物主代词",a:"theirs"}
-            ]},
-            {id:10,name:"一般将来时",level:"七上",type:"normal",questions:[
-                {q:"I ___ (be) a teacher in the future.",a:"will be"},
-                {q:"She ___ (visit) her grandparents tomorrow.",a:"will visit"},
-                {q:"They ___ (not go) to the cinema tonight.",a:"won't go"},
-                {q:"___ you ___ (come) to my party?",a:"Will come"},
-                {q:"There ___ (be) a meeting next week.",a:"will be"}
-            ]},
-            {id:11,name:"七上核心词汇",level:"七上单词",type:"word",questions:[
-                {q:"工程师（英文）",a:"engineer"},
-                {q:"警察（英文）",a:"policeman"},
-                {q:"医生（英文）",a:"doctor"},
-                {q:"爱好（英文）",a:"hobby"},
-                {q:"规则（英文）",a:"rule"}
-            ]},
-            {id:12,name:"七上 Unit1-4 默写",level:"七上课文",type:"normal",questions:[
-                {q:"这真是一个忙碌的学期！（英文）",a:"This is a really busy term!"},
-                {q:"我的爱好是读书。（英文）",a:"My hobby is reading books."},
-                {q:"我想要成为一名老师。（英文）",a:"I want to be a teacher."},
-                {q:"她长什么样子？（英文）",a:"What does she look like?"},
-                {q:"到睡觉的时间了。（英文）",a:"It's time to go to bed."}
-            ]}
+            {
+                id:1,name:"一般现在时",level:"六上",type:"normal",
+                questions:[
+                    {q:"He ___ (like) playing basketball.",a:["likes"]},
+                    {q:"She ___ (go) to school by bus every day.",a:["goes"]},
+                    {q:"They ___ (not watch) TV on weekdays.",a:["don't watch","do not watch"]},
+                    {q:"___ you ___ (have) breakfast at 7?",a:["Do have"]},
+                    {q:"My father ___ (work) in a hospital.",a:["works"]},
+                    {q:"Tom often ___ (play) football after school.",a:["plays"]},
+                    {q:"We usually ___ (get) up at six thirty.",a:["get"]}
+                ]
+            },
+            {
+                id:2,name:"现在进行时",level:"六上",type:"normal",
+                questions:[
+                    {q:"Look! They ___ (play) football.",a:["are playing"]},
+                    {q:"Listen! She ___ (sing) a song.",a:["is singing"]},
+                    {q:"I ___ (do) my homework now.",a:["am doing"]},
+                    {q:"What ___ you ___ (do) at the moment?",a:["are doing"]},
+                    {q:"The bus ___ (come).",a:["is coming"]},
+                    {q:"My mother ___ (cook) dinner in the kitchen.",a:["is cooking"]}
+                ]
+            },
+            {
+                id:3,name:"六上核心词汇",level:"六上单词",type:"word",
+                questions:[
+                    {q:"不同的（英文）",a:["different"]},
+                    {q:"相同的（英文）",a:["same"]},
+                    {q:"通常（英文）",a:["usually"]},
+                    {q:"有时（英文）",a:["sometimes"]},
+                    {q:"从不（英文）",a:["never"]},
+                    {q:"总是（英文）",a:["always"]}
+                ]
+            },
+            {
+                id:4,name:"六上句型默写",level:"六上课文",type:"normal",
+                questions:[
+                    {q:"你通常几点起床？（英文）",a:["What time do you usually get up?"]},
+                    {q:"我通常七点起床。（英文）",a:["I usually get up at seven."]},
+                    {q:"你怎样去学校？（英文）",a:["How do you go to school?"]}
+                ]
+            },
+            {
+                id:5,name:"一般过去时",level:"六下",type:"normal",
+                questions:[
+                    {q:"I ___ (go) to the park yesterday.",a:["went"]},
+                    {q:"She ___ (do) her homework last night.",a:["did"]},
+                    {q:"They ___ (have) a party last weekend.",a:["had"]},
+                    {q:"He ___ (eat) an apple this morning.",a:["ate"]}
+                ]
+            },
+            {
+                id:6,name:"过去分词",level:"六下",type:"normal",
+                questions:[
+                    {q:"go 的过去分词",a:["gone"]},
+                    {q:"do 的过去分词",a:["done"]},
+                    {q:"have 的过去分词",a:["had"]},
+                    {q:"eat 的过去分词",a:["eaten"]}
+                ]
+            },
+            {
+                id:7,name:"六下核心词汇",level:"六下单词",type:"word",
+                questions:[
+                    {q:"野营（英文）",a:["camp"]},
+                    {q:"杂志（英文）",a:["magazine"]},
+                    {q:"更好的（英文）",a:["better"]},
+                    {q:"更快的（英文）",a:["faster"]}
+                ]
+            },
+            {
+                id:8,name:"六下句型默写",level:"六下课文",type:"normal",
+                questions:[
+                    {q:"你上周末做了什么？（英文）",a:["What did you do last weekend?"]},
+                    {q:"我们必须遵守规则。（英文）",a:["We must follow the rules."]}
+                ]
+            },
+            {
+                id:9,name:"人称代词",level:"七上",type:"normal",
+                questions:[
+                    {q:"we 的宾格",a:["us"]},
+                    {q:"they 的宾格",a:["them"]},
+                    {q:"my 的名词性物主代词",a:["mine"]}
+                ]
+            },
+            {
+                id:10,name:"一般将来时",level:"七上",type:"normal",
+                questions:[
+                    {q:"I ___ (be) a teacher in the future.",a:["will be"]},
+                    {q:"She ___ (visit) her grandparents tomorrow.",a:["will visit"]}
+                ]
+            },
+            {
+                id:11,name:"七上核心词汇",level:"七上单词",type:"word",
+                questions:[
+                    {q:"工程师（英文）",a:["engineer"]},
+                    {q:"警察（英文）",a:["policeman"]},
+                    {q:"医生（英文）",a:["doctor"]}
+                ]
+            },
+            {
+                id:12,name:"七上课文默写",level:"七上课文",type:"normal",
+                questions:[
+                    {q:"我的爱好是读书。（英文）",a:["My hobby is reading books."]},
+                    {q:"我想要成为一名老师。（英文）",a:["I want to be a teacher."]}
+                ]
+            }
         ]
-        
+
+        // 初始化
         checkStreak()
         checkDogStarve()
         renderAll()
-        
+
         setInterval(() => {
             checkDogStarve()
             renderAll()
         }, 60000)
-        
+
         document.getElementById('checkBtn').onclick = dailyCheck
         document.getElementById('feedBtn').onclick = feedDog
-        
+
+        // 连续打卡
         function checkStreak() {
             let yesterday = new Date(Date.now() - 86400000).toDateString()
-            if (lastCheck === yesterday) {}
-            else if (lastCheck !== today) {
-                if (lastCheck !== yesterday) streak = 0
+            if (lastCheck !== yesterday && lastCheck !== today) {
+                streak = 0
             }
         }
-        
+
+        // 每日打卡
         function dailyCheck() {
             if (lastCheck === today) return
             lastCheck = today
@@ -314,359 +300,314 @@
             food += 10
             save()
             renderAll()
-            createSparkles()
-            showModal('success', '✅ 打卡成功！', `连续打卡 ${streak} 天，+10 狗粮！`)
+            showModal('success','打卡成功',`连续打卡 ${streak} 天，+10 狗粮`)
         }
-        
-        function createSparkles() {
-            for (let i = 0; i < 10; i++) {
-                const sparkle = document.createElement('div')
-                sparkle.className = 'sparkle'
-                sparkle.innerHTML = ['✨', '⭐', '💖', '🌟'][Math.floor(Math.random() * 4)]
-                sparkle.style.left = Math.random() * 100 + 'vw'
-                sparkle.style.top = Math.random() * 100 + 'vh'
-                sparkle.style.fontSize = (Math.random() * 20 + 10) + 'px'
-                document.body.appendChild(sparkle)
-                setTimeout(() => sparkle.remove(), 2000)
-            }
-        }
-        
+
+        // 喂食
         function feedDog() {
             if (!dogAlive) {
-                showModal('error', '🐶 小狗已饿晕', '请先使用复活功能~')
-                return
+                showModal('error','无法喂食','小狗已饿晕，请先复活'); return
             }
             if (food < 100) {
-                showModal('error', '🍖 狗粮不足', '快去刷题赚狗粮吧！')
-                return
+                showModal('error','狗粮不足','快去刷题赚取狗粮'); return
             }
             food -= 100
             lastFeedTime = Date.now()
             save()
             renderAll()
-            showModal('success', '✅ 喂食成功！', '小狗吃饱啦~ 继续加油！')
+            showModal('success','喂食成功','小狗已吃饱')
         }
-        
+
+        // 饥饿检测
         function checkDogStarve() {
             let now = Date.now()
             let gap = now - lastFeedTime
             let tipText = ""
-            
             if (gap > 86400000) {
                 dogAlive = false
-                tipText = "⚠️ 已超过 24 小时未喂食，小狗已饿晕！"
+                tipText = "⚠️ 超过24小时未喂食，小狗已饿晕"
             } else {
                 let leftHour = (86400000 - gap) / 3600000
-                tipText = `⏰ 距离小狗饿晕还剩 ${leftHour.toFixed(1)} 小时`
+                tipText = `距离饿晕还剩 ${leftHour.toFixed(1)} 小时`
             }
             document.getElementById('tip').innerText = tipText
         }
-        
+
+        // 标记错题
         function addWeak() {
             let key = today + '_add'
             dayAddCount[key] = dayAddCount[key] || 0
             if (dayAddCount[key] >= 2) {
-                showModal('info', '📝 今日已达上限', '今天已录 2 个模块，明天再继续~')
-                return
+                showModal('info','今日已达上限','今天已标记2个模块'); return
             }
             let id = +document.getElementById('tid').value
             let t = topics.find(x => x.id === id)
             if (!t) {
-                showModal('error', '❌ 输入错误', '请输入 1-12 编号')
-                return
+                showModal('error','编号错误','请输入1-12编号'); return
             }
             if (!weakTopics.includes(id)) weakTopics.push(id)
             dayAddCount[key]++
             food += 20
             save()
             renderAll()
-            showModal('success', '✅ 标记成功！', `今日已录 ${dayAddCount[key]}/2 个，+20 狗粮`)
+            showModal('success','标记成功',`今日已录 ${dayAddCount[key]}/2 个，+20 狗粮`)
         }
-        
+
+        // 打开答题弹窗【只弹窗 不计数】
         function doTest(id) {
             if (!dogAlive) {
-                showModal('error', '🐶 小狗已饿晕', '先喂食或复活小狗~')
-                return
+                showModal('error','小狗已饿晕','请先复活再刷题'); return
             }
             let t = topics.find(x => x.id === id)
             let dayKey = today + '_' + id
-            dayAnswerCount[dayKey] = (dayAnswerCount[dayKey] || 0) + 1
-            
-            if (t.type === "word" && dayAnswerCount[dayKey] > 8) {
-                showModal('info', '📚 今日已达上限', '单词今日已刷 8 次~')
-                return
+            dayAnswerCount[dayKey] = dayAnswerCount[dayKey] || 0
+
+            let max = t.type === "word" ? 8 : 5
+            if (dayAnswerCount[dayKey] >= max) {
+                showModal('info','今日已达上限','该模块今日刷题次数已满'); return
             }
-            if (t.type === "normal" && dayAnswerCount[dayKey] > 5) {
-                showModal('info', '📚 今日已达上限', '该模块今日已刷 5 次~')
-                return
-            }
-            
-            let q = t.questions[Math.floor(Math.random() * t.questions.length)]
+
+            // 随机出题
+            let qList = t.questions
+            let q = qList[Math.floor(Math.random() * qList.length)]
             showAnswerModal(q, t, id)
         }
-        
+
+        // 答题弹窗
         function showAnswerModal(question, topic, id) {
             const overlay = document.getElementById('modalOverlay')
             const modal = overlay.querySelector('.modal')
-            
             document.getElementById('modalTitle').innerText = topic.name
             document.getElementById('modalContent').innerHTML = `
-                <div style="font-size: 20px; margin: 20px 0; color: #333; font-weight: bold;">${question.q}</div>
-                <input type="text" id="answerInput" placeholder="输入你的答案" autocomplete="off">
-                <div id="feedback" class="feedback" style="display: none;"></div>
+                <div style="font-size:17px;margin:15px 0;">${question.q}</div>
+                <input type="text" id="answerInput" placeholder="输入答案" autocomplete="off">
+                <div id="feedback" class="feedback" style="display:none;"></div>
             `
             document.getElementById('modalButtons').innerHTML = `
-                <button class="btn btn-green" onclick="submitAnswer()">提交</button>
-                <button class="btn btn-blue" onclick="closeModal()">取消</button>
+                <button class="btn btn-success" onclick="submitAnswer()">提交</button>
+                <button class="btn" onclick="closeModal()">取消</button>
             `
-            
             overlay.style.display = 'flex'
             document.getElementById('answerInput').focus()
-            
-            document.getElementById('answerInput').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') submitAnswer()
-            })
-            
-            modal.dataset.question = JSON.stringify({ q: question.q, a: question.a, id: id, type: topic.type })
+            modal.dataset.question = JSON.stringify({ q:question.q, a:question.a, id:id, type:topic.type })
         }
-        
+
+        // 提交答案【这里才计数】
         function submitAnswer() {
             const modal = document.querySelector('#modalOverlay .modal')
-            const questionData = JSON.parse(modal.dataset.question)
-            const userInput = document.getElementById('answerInput').value.trim()
+            const qData = JSON.parse(modal.dataset.question)
+            const userAns = document.getElementById('answerInput').value.trim().toLowerCase()
             const feedback = document.getElementById('feedback')
-            
-            if (!userInput) return
-            
-            const score = questionData.type === "word" ? 10 : 30
+            if (!userAns) return
+
+            // 正式统计次数
+            let t = topics.find(x=>x.id===qData.id)
+            let dayKey = today + '_' + qData.id
+            dayAnswerCount[dayKey]++
             totalAnswered++
-            
-            if (userInput.toLowerCase() === questionData.a.toLowerCase()) {
+
+            const score = qData.type === "word" ? 10 : 30
+            const rightArr = qData.a.map(item => item.toLowerCase())
+
+            if (rightArr.includes(userAns)) {
+                // 答对
                 food += score
                 totalCorrect++
-                answerRecord[questionData.id] = (answerRecord[questionData.id] || 0) + 1
-                
+                answerRecord[qData.id] = (answerRecord[qData.id] || 0) + 1
                 feedback.className = 'feedback feedback-correct'
                 feedback.innerHTML = `✅ 正确！+${score} 狗粮`
                 feedback.style.display = 'block'
-                
-                if (answerRecord[questionData.id] >= 2 && weakTopics.includes(questionData.id)) {
-                    weakTopics = weakTopics.filter(x => x !== questionData.id)
+
+                if (answerRecord[qData.id] >= 2 && weakTopics.includes(qData.id)) {
+                    weakTopics = weakTopics.filter(x=>x!==qData.id)
                     food += 40
                     modulesClearedCount++
-                    setTimeout(() => {
-                        showModal('success', '🎉 模块已攻克！', `+40 狗粮！太棒了！`)
-                        answerRecord[questionData.id] = 0
-                    }, 500)
+                    setTimeout(()=>{
+                        showModal('success','模块攻克','奖励额外40狗粮');
+                        answerRecord[qData.id] = 0
+                    },600)
                 } else {
-                    setTimeout(closeModal, 1000)
+                    setTimeout(closeModal,1000)
                 }
             } else {
-                food -= 10
-                answerRecord[questionData.id] = 0
-                
+                // 答错：狗粮最低锁0，不负数
+                food = Math.max(0, food - 10)
+                answerRecord[qData.id] = 0
                 feedback.className = 'feedback feedback-wrong'
-                feedback.innerHTML = `❌ 错误！-10 狗粮<br><small style="color: #721c24;">正确答案：${questionData.a}</small>`
+                feedback.innerHTML = `❌ 错误！-10 狗粮<br>正确：${qData.a[0]}`
                 feedback.style.display = 'block'
-                
-                if (!weakTopics.includes(questionData.id)) weakTopics.push(questionData.id)
-                setTimeout(closeModal, 1500)
+                if (!weakTopics.includes(qData.id)) weakTopics.push(qData.id)
+                setTimeout(closeModal,1500)
             }
-            
             save()
             renderAll()
         }
-        
+
+        // 复活
         function adminRevive() {
             food = 500
             dogAlive = true
             lastFeedTime = Date.now()
             save()
             renderAll()
-            createSparkles()
-            showModal('success', '🎉 复活成功！', '小狗恢复活力~ 继续加油！')
+            showModal('success','复活成功','小狗恢复正常状态')
         }
-        
         function openReviveModal() {
             const overlay = document.getElementById('modalOverlay')
-            document.getElementById('modalTitle').innerText = '🔐 小狗复活'
+            document.getElementById('modalTitle').innerText = '小狗复活'
             document.getElementById('modalContent').innerHTML = `
-                <p style="color: #666; margin-bottom: 15px;">只有张霆轩才能复活小狗</p>
                 <input type="password" id="revivePwd" placeholder="输入复活密码">
             `
             document.getElementById('modalButtons').innerHTML = `
-                <button class="btn btn-blue" onclick="checkRevive()">复活</button>
-                <button class="btn btn-pink" onclick="closeModal()">取消</button>
+                <button class="btn btn-primary" onclick="checkRevive()">确认复活</button>
+                <button class="btn" onclick="closeModal()">取消</button>
             `
             overlay.style.display = 'flex'
         }
-        
         function checkRevive() {
-            const pwd = document.getElementById('revivePwd').value
+            let pwd = document.getElementById('revivePwd').value
             if (pwd === "lunhuitiansheng") {
                 adminRevive()
             } else {
-                showModal('error', '❌ 密码错误', '这是张霆轩的专属功能~')
+                showModal('error','密码错误','无法复活')
             }
         }
-        
+
         function closeModal() {
             document.getElementById('modalOverlay').style.display = 'none'
         }
-        
-        function showModal(type, title, content) {
+        function showModal(type,title,content) {
             const overlay = document.getElementById('modalOverlay')
             document.getElementById('modalTitle').innerText = title
-            
-            let icon = type === 'success' ? '🎉' : type === 'error' ? '❌' : 'ℹ️'
-            let color = type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#17a2b8'
-            
-            document.getElementById('modalContent').innerHTML = `
-                <div style="font-size: 50px; margin: 15px 0;">${icon}</div>
-                <div style="color: ${color}; font-size: 16px; line-height: 1.5;">${content}</div>
-            `
-            document.getElementById('modalButtons').innerHTML = `
-                <button class="btn btn-blue" onclick="closeModal()">好的</button>
-            `
+            document.getElementById('modalContent').innerHTML = `<div style="color:#555;">${content}</div>`
+            document.getElementById('modalButtons').innerHTML = `<button class="btn btn-primary" onclick="closeModal()">确定</button>`
             overlay.style.display = 'flex'
         }
-        
+
+        // 导出导入 清理缓存
         function exportData() {
-            const data = {
-                food, dogAlive, weakTopics, lastCheck, lastFeedTime,
-                dayAnswerCount, answerRecord, dayAddCount,
-                totalCorrect, totalAnswered, streak, lastStreakDate, modulesClearedCount,
-                exportDate: new Date().toISOString()
-            }
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+            const data = {food,dogAlive,weakTopics,lastCheck,lastFeedTime,dayAnswerCount,answerRecord,dayAddCount,totalCorrect,totalAnswered,streak,modulesClearedCount}
+            const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'})
             const url = URL.createObjectURL(blob)
             const a = document.createElement('a')
             a.href = url
-            a.download = `汪汪队备份_${new Date().toLocaleDateString('zh-CN')}.json`
+            a.download = `英语错题备份_${new Date().toLocaleDateString()}.json`
             a.click()
             URL.revokeObjectURL(url)
-            showModal('success', '✅ 导出成功', '备份文件已下载~')
+            showModal('success','导出成功','备份已下载')
         }
-        
         function importData(input) {
-            const file = input.files[0]
-            if (!file) return
-            
-            const reader = new FileReader()
-            reader.onload = (e) => {
-                try {
-                    const data = JSON.parse(e.target.result)
-                    food = data.food || 100
-                    dogAlive = data.dogAlive !== false
-                    weakTopics = data.weakTopics || []
-                    lastCheck = data.lastCheck || ''
-                    lastFeedTime = data.lastFeedTime || Date.now()
-                    dayAnswerCount = data.dayAnswerCount || {}
-                    answerRecord = data.answerRecord || {}
-                    dayAddCount = data.dayAddCount || {}
-                    totalCorrect = data.totalCorrect || 0
-                    totalAnswered = data.totalAnswered || 0
-                    streak = data.streak || 0
-                    modulesClearedCount = data.modulesClearedCount || 0
-                    save()
-                    renderAll()
-                    showModal('success', '✅ 恢复成功', '数据已恢复~')
-                } catch (err) {
-                    showModal('error', '❌ 导入失败', '文件格式错误')
+            let file = input.files[0]
+            if(!file) return
+            let reader = new FileReader()
+            reader.onload = e=>{
+                try{
+                    let d = JSON.parse(e.target.result)
+                    food = d.food||0
+                    dogAlive = d.dogAlive!==false
+                    weakTopics = d.weakTopics||[]
+                    lastCheck = d.lastCheck||''
+                    lastFeedTime = d.lastFeedTime||Date.now()
+                    dayAnswerCount = d.dayAnswerCount||{}
+                    answerRecord = d.answerRecord||{}
+                    dayAddCount = d.dayAddCount||{}
+                    totalCorrect = d.totalCorrect||0
+                    totalAnswered = d.totalAnswered||0
+                    streak = d.streak||0
+                    modulesClearedCount = d.modulesClearedCount||0
+                    save();renderAll()
+                    showModal('success','恢复成功','数据已还原')
+                }catch{
+                    showModal('error','导入失败','文件格式不正确')
                 }
             }
             reader.readAsText(file)
             input.value = ''
         }
-
-        // 新增：一键清理缓存 / 重置数据
         function clearAllData() {
-            if(!confirm("⚠️ 确定要清理所有数据吗？积分、小狗状态、错题将全部重置！")) return
+            if(!confirm('确定清理所有数据？积分、错题、打卡记录将全部重置！')) return
             localStorage.clear()
             location.reload()
         }
-        
+
+        // 渲染页面
         function renderAll() {
             document.getElementById('food').innerText = food
-            
             const dogContainer = document.getElementById('dogContainer')
-            
-            if (dogAlive) {
-                document.getElementById('dogStatus').innerText = "状态：健康开心 ✨"
-                document.getElementById('dogStatus').style.color = "#28a745"
-                dogContainer.innerHTML = '<div class="dog-alive heart-beat">🐕</div>'
-                document.getElementById('dogCard').classList.remove("dog-dead")
-            } else {
-                document.getElementById('dogStatus').innerText = "状态：已饿晕 💀"
-                document.getElementById('dogStatus').style.color = "#dc3545"
+
+            if(dogAlive){
+                document.getElementById('dogStatus').innerText = "状态：正常"
+                document.getElementById('dogStatus').style.color = "#444"
+                dogContainer.innerHTML = '<div class="dog-alive">🐕</div>'
+            }else{
+                document.getElementById('dogStatus').innerText = "状态：已饿晕"
+                document.getElementById('dogStatus').style.color = "#999"
                 dogContainer.innerHTML = '<div class="tombstone">🪦</div>'
-                document.getElementById('dogCard').classList.add("dog-dead")
             }
-            
-            // 修复：只禁用刷题/打卡/喂食，不禁用复活/导出/清理缓存
-            document.getElementById('checkBtn').disabled = !dogAlive || lastCheck === today
+
+            // 权限控制：只禁用刷题/打卡/喂食，复活、导出、清理、标记都可用
+            document.getElementById('checkBtn').disabled = (lastCheck === today)
             document.getElementById('feedBtn').disabled = !dogAlive
-            document.querySelectorAll('.topic-item .btn').forEach(b => b.disabled = !dogAlive)
-            
-            // 更新统计
-            document.getElementById('todayCount').innerText = Object.values(dayAnswerCount).reduce((a, b) => a + b, 0)
-            document.getElementById('accuracy').innerText = totalAnswered > 0 ? Math.round(totalCorrect / totalAnswered * 100) + '%' : '0%'
+
+            // 统计
+            document.getElementById('todayCount').innerText = Object.values(dayAnswerCount).reduce((a,b)=>a+b,0)
+            document.getElementById('accuracy').innerText = totalAnswered>0 ? Math.round(totalCorrect/totalAnswered*100)+'%' : '0%'
             document.getElementById('streak').innerText = streak
             document.getElementById('totalCorrect').innerText = totalCorrect
             document.getElementById('modulesCleared').innerText = modulesClearedCount
-            
+
             renderWeak()
             renderList()
             save()
         }
-        
+
         function renderWeak() {
-            document.getElementById('weakList').innerText = weakTopics.length === 0
-                ? "我的错题模块：暂无"
-                : "我的错题模块：" + weakTopics.map(id => {
-                    const t = topics.find(x => x.id === id)
-                    return `${id}. ${t.name}`
-                }).join("、")
+            let wrap = document.getElementById('weakList')
+            if(weakTopics.length===0){
+                wrap.innerText = "我的错题模块：暂无"
+            }else{
+                let arr = weakTopics.map(id=>{
+                    let t = topics.find(x=>x.id===id)
+                    return `${id}.${t.name}`
+                })
+                wrap.innerText = "我的错题模块：" + arr.join("、")
+            }
         }
-        
+
         function renderList() {
-            let html = topics.map(t => {
-                const dayKey = today + '_' + t.id
-                const count = dayAnswerCount[dayKey] || 0
-                const max = t.type === "word" ? 8 : 5
-                const progress = (count / max) * 100
-                
-                return `
+            let html = ''
+            topics.forEach(t=>{
+                let dayKey = today + '_' + t.id
+                let cnt = dayAnswerCount[dayKey]||0
+                let max = t.type==="word"?8:5
+                let pct = (cnt/max)*100
+                html += `
                 <div class="topic-item">
-                    <div style="flex: 1;">
-                        <div style="font-weight: bold; color: #333;">${t.id}. ${t.name}<span class="level-tag">${t.level}</span></div>
-                        <div style="font-size: 12px; color: #666; margin-top: 5px;">
-                            今日：${count}/${max} 次
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${progress}%"></div>
-                        </div>
+                    <div style="flex:1;">
+                        <div style="font-weight:500;">${t.id}.${t.name}<span class="level-tag">${t.level}</span></div>
+                        <div style="font-size:12px;color:#888;margin-top:4px;">今日 ${cnt}/${max} 次</div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
                     </div>
-                    <button class="btn btn-orange" onclick="doTest(${t.id})">开始刷题</button>
-                </div>`
-            }).join('')
+                    <button class="btn" onclick="doTest(${t.id})" ${!dogAlive?'disabled':''}>刷题</button>
+                </div>
+                `
+            })
             document.getElementById('topicList').innerHTML = html
         }
-        
+
         function save() {
-            localStorage.setItem('food', food)
-            localStorage.setItem('dogAlive', dogAlive)
-            localStorage.setItem('weakTopics', JSON.stringify(weakTopics))
-            localStorage.setItem('lastCheck', lastCheck)
-            localStorage.setItem('lastFeedTime', lastFeedTime)
-            localStorage.setItem('dayAnswerCount', JSON.stringify(dayAnswerCount))
-            localStorage.setItem('answerRecord', JSON.stringify(answerRecord))
-            localStorage.setItem('dayAddCount', JSON.stringify(dayAddCount))
-            localStorage.setItem('totalCorrect', totalCorrect)
-            localStorage.setItem('totalAnswered', totalAnswered)
-            localStorage.setItem('streak', streak)
-            localStorage.setItem('lastStreakDate', lastStreakDate)
-            localStorage.setItem('modulesClearedCount', modulesClearedCount)
+            localStorage.setItem('food',food)
+            localStorage.setItem('dogAlive',dogAlive)
+            localStorage.setItem('weakTopics',JSON.stringify(weakTopics))
+            localStorage.setItem('lastCheck',lastCheck)
+            localStorage.setItem('lastFeedTime',lastFeedTime)
+            localStorage.setItem('dayAnswerCount',JSON.stringify(dayAnswerCount))
+            localStorage.setItem('answerRecord',JSON.stringify(answerRecord))
+            localStorage.setItem('dayAddCount',JSON.stringify(dayAddCount))
+            localStorage.setItem('totalCorrect',totalCorrect)
+            localStorage.setItem('totalAnswered',totalAnswered)
+            localStorage.setItem('streak',streak)
+            localStorage.setItem('modulesClearedCount',modulesClearedCount)
         }
     </script>
 </body>
