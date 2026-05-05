@@ -159,9 +159,9 @@
         let totalCorrect = +localStorage.getItem('totalCorrect') || 0
         let totalAnswered = +localStorage.getItem('totalAnswered') || 0
         let streak = +localStorage.getItem('streak') || 0
-        let modulesClearedCount = +localStorage.getItem('modulesClearedCount') || 0
+        modulesClearedCount = +localStorage.getItem('modulesClearedCount') || 0
 
-        // 题库扩容 + 支持多答案数组
+        // 【超级扩容完整版题库】12个模块大幅加题，支持多答案
         const topics = [
             {
                 id:1,name:"一般现在时",level:"六上",type:"normal",
@@ -172,7 +172,12 @@
                     {q:"___ you ___ (have) breakfast at 7?",a:["Do have"]},
                     {q:"My father ___ (work) in a hospital.",a:["works"]},
                     {q:"Tom often ___ (play) football after school.",a:["plays"]},
-                    {q:"We usually ___ (get) up at six thirty.",a:["get"]}
+                    {q:"We usually ___ (get) up at six thirty.",a:["get"]},
+                    {q:"My mother often ___ (cook) dinner.",a:["cooks"]},
+                    {q:"The bird ___ (sing) every morning.",a:["sings"]},
+                    {q:"We ___ (not go) to school on Sunday.",a:["don't go","do not go"]},
+                    {q:"What ___ he usually ___ (do) after school?",a:["does do"]},
+                    {q:"Lucy ___ (study) English every night.",a:["studies"]}
                 ]
             },
             {
@@ -183,7 +188,11 @@
                     {q:"I ___ (do) my homework now.",a:["am doing"]},
                     {q:"What ___ you ___ (do) at the moment?",a:["are doing"]},
                     {q:"The bus ___ (come).",a:["is coming"]},
-                    {q:"My mother ___ (cook) dinner in the kitchen.",a:["is cooking"]}
+                    {q:"My mother ___ (cook) dinner in the kitchen.",a:["is cooking"]},
+                    {q:"We ___ (read) books in the library now.",a:["are reading"]},
+                    {q:"He ___ (swim) in the pool now.",a:["is swimming"]},
+                    {q:"Look! The cat ___ (run) after a mouse.",a:["is running"]},
+                    {q:"They ___ (not sleep) now.",a:["aren't sleeping","are not sleeping"]}
                 ]
             },
             {
@@ -194,7 +203,13 @@
                     {q:"通常（英文）",a:["usually"]},
                     {q:"有时（英文）",a:["sometimes"]},
                     {q:"从不（英文）",a:["never"]},
-                    {q:"总是（英文）",a:["always"]}
+                    {q:"总是（英文）",a:["always"]},
+                    {q:"经常（英文）",a:["often"]},
+                    {q:"周末（英文）",a:["weekend"]},
+                    {q:"步行（英文）",a:["walk"]},
+                    {q:"乘坐（英文）",a:["take"]},
+                    {q:"到达（英文）",a:["arrive"]},
+                    {q:"忙碌的（英文）",a:["busy"]}
                 ]
             },
             {
@@ -202,7 +217,12 @@
                 questions:[
                     {q:"你通常几点起床？（英文）",a:["What time do you usually get up?"]},
                     {q:"我通常七点起床。（英文）",a:["I usually get up at seven."]},
-                    {q:"你怎样去学校？（英文）",a:["How do you go to school?"]}
+                    {q:"你怎样去学校？（英文）",a:["How do you go to school?"]},
+                    {q:"我乘公交车去学校。（英文）",a:["I go to school by bus."]},
+                    {q:"现在几点了？（英文）",a:["What time is it now?"]},
+                    {q:"该上学了。（英文）",a:["It's time for school."]},
+                    {q:"我走路回家。（英文）",a:["I walk home."]},
+                    {q:"你周末做什么？（英文）",a:["What do you do on the weekend?"]}
                 ]
             },
             {
@@ -211,7 +231,13 @@
                     {q:"I ___ (go) to the park yesterday.",a:["went"]},
                     {q:"She ___ (do) her homework last night.",a:["did"]},
                     {q:"They ___ (have) a party last weekend.",a:["had"]},
-                    {q:"He ___ (eat) an apple this morning.",a:["ate"]}
+                    {q:"He ___ (eat) an apple this morning.",a:["ate"]},
+                    {q:"We ___ (take) photos yesterday.",a:["took"]},
+                    {q:"My father ___ (work) late last night.",a:["worked"]},
+                    {q:"I ___ (watch) TV yesterday evening.",a:["watched"]},
+                    {q:"She ___ (play) the piano last Saturday.",a:["played"]},
+                    {q:"They ___ (not go) out last night.",a:["didn't go","did not go"]},
+                    {q:"What ___ you ___ (do) yesterday?",a:["did do"]}
                 ]
             },
             {
@@ -220,7 +246,13 @@
                     {q:"go 的过去分词",a:["gone"]},
                     {q:"do 的过去分词",a:["done"]},
                     {q:"have 的过去分词",a:["had"]},
-                    {q:"eat 的过去分词",a:["eaten"]}
+                    {q:"eat 的过去分词",a:["eaten"]},
+                    {q:"take 的过去分词",a:["taken"]},
+                    {q:"see 的过去分词",a:["seen"]},
+                    {q:"write 的过去分词",a:["written"]},
+                    {q:"break 的过去分词",a:["broken"]},
+                    {q:"speak 的过去分词",a:["spoken"]},
+                    {q:"choose 的过去分词",a:["chosen"]}
                 ]
             },
             {
@@ -229,14 +261,27 @@
                     {q:"野营（英文）",a:["camp"]},
                     {q:"杂志（英文）",a:["magazine"]},
                     {q:"更好的（英文）",a:["better"]},
-                    {q:"更快的（英文）",a:["faster"]}
+                    {q:"更快的（英文）",a:["faster"]},
+                    {q:"更小的（英文）",a:["smaller"]},
+                    {q:"更大的（英文）",a:["bigger"]},
+                    {q:"更强壮的（英文）",a:["stronger"]},
+                    {q:"更老的（英文）",a:["older"]},
+                    {q:"更年轻的（英文）",a:["younger"]},
+                    {q:"乡村（英文）",a:["countryside"]},
+                    {q:"礼物（英文）",a:["gift"]},
+                    {q:"旅馆（英文）",a:["hotel"]}
                 ]
             },
             {
                 id:8,name:"六下句型默写",level:"六下课文",type:"normal",
                 questions:[
                     {q:"你上周末做了什么？（英文）",a:["What did you do last weekend?"]},
-                    {q:"我们必须遵守规则。（英文）",a:["We must follow the rules."]}
+                    {q:"我们必须遵守规则。（英文）",a:["We must follow the rules."]},
+                    {q:"不要在教室里跑。（英文）",a:["Don't run in the classroom."]},
+                    {q:"我的生日在五月二日。（英文）",a:["My birthday is on May 2nd."]},
+                    {q:"我早上七点十分起床。（英文）",a:["I get up at seven ten in the morning."]},
+                    {q:"我比你更高。（英文）",a:["I am taller than you."]},
+                    {q:"他昨天去钓鱼了。（英文）",a:["He went fishing yesterday."]}
                 ]
             },
             {
@@ -244,14 +289,26 @@
                 questions:[
                     {q:"we 的宾格",a:["us"]},
                     {q:"they 的宾格",a:["them"]},
-                    {q:"my 的名词性物主代词",a:["mine"]}
+                    {q:"my 的名词性物主代词",a:["mine"]},
+                    {q:"her 的名词性物主代词",a:["hers"]},
+                    {q:"their 的名词性物主代词",a:["theirs"]},
+                    {q:"I 的宾格",a:["me"]},
+                    {q:"he 的宾格",a:["him"]},
+                    {q:"she 的宾格",a:["her"]},
+                    {q:"your 名词性物主代词",a:["yours"]},
+                    {q:"it 的形容词性物主代词",a:["its"]}
                 ]
             },
             {
                 id:10,name:"一般将来时",level:"七上",type:"normal",
                 questions:[
                     {q:"I ___ (be) a teacher in the future.",a:["will be"]},
-                    {q:"She ___ (visit) her grandparents tomorrow.",a:["will visit"]}
+                    {q:"She ___ (visit) her grandparents tomorrow.",a:["will visit"]},
+                    {q:"They ___ (not go) to the cinema tonight.",a:["won't go","will not go"]},
+                    {q:"___ you ___ (come) to my party?",a:["Will come"]},
+                    {q:"There ___ (be) a meeting next week.",a:["will be"]},
+                    {q:"He ___ (play) basketball tomorrow afternoon.",a:["will play"]},
+                    {q:"We ___ (study) English next term.",a:["will study"]}
                 ]
             },
             {
@@ -259,14 +316,26 @@
                 questions:[
                     {q:"工程师（英文）",a:["engineer"]},
                     {q:"警察（英文）",a:["policeman"]},
-                    {q:"医生（英文）",a:["doctor"]}
+                    {q:"医生（英文）",a:["doctor"]},
+                    {q:"爱好（英文）",a:["hobby"]},
+                    {q:"规则（英文）",a:["rule"]},
+                    {q:"学生（英文）",a:["student"]},
+                    {q:"司机（英文）",a:["driver"]},
+                    {q:"厨师（英文）",a:["cook"]},
+                    {q:"农民（英文）",a:["farmer"]},
+                    {q:"美丽的（英文）",a:["beautiful"]},
+                    {q:"聪明的（英文）",a:["clever"]}
                 ]
             },
             {
                 id:12,name:"七上课文默写",level:"七上课文",type:"normal",
                 questions:[
                     {q:"我的爱好是读书。（英文）",a:["My hobby is reading books."]},
-                    {q:"我想要成为一名老师。（英文）",a:["I want to be a teacher."]}
+                    {q:"我想要成为一名老师。（英文）",a:["I want to be a teacher."]},
+                    {q:"这真是一个忙碌的学期！（英文）",a:["This is a really busy term!"]},
+                    {q:"她长什么样子？（英文）",a:["What does she look like?"]},
+                    {q:"到睡觉的时间了。（英文）",a:["It's time to go to bed."]},
+                    {q:"我喜欢画画和跳舞。（英文）",a:["I like drawing and dancing."]}
                 ]
             }
         ]
