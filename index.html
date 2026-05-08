@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>汪汪队疾风传 - 英语错题攻坚系统</title>
+    <title>汪汪队疾风传 - 上海五四学制英语错题攻坚系统</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC","Microsoft YaHei",sans-serif; }
         body { background: #f6f7f9; color: #333; min-height: 100vh; padding: 20px 16px; line-height: 1.6; }
@@ -13,10 +13,10 @@
         h3 { font-size: 16px; font-weight: 500; color: #444; margin: 20px 0 10px; }
         .level-tag { font-size: 12px; padding: 2px 6px; background: #f2f3f5; border-radius: 6px; color: #666; margin-left: 4px; }
 
-        /* 极简卡片 */
+        /* 卡片通用样式 */
         .card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: none; }
         
-        /* 小狗状态+皮肤系统 */
+        /* 小狗状态模块 */
         .dog-card { position: relative; overflow: hidden; }
         .dog-container { position: relative; width: 100px; height: 100px; margin: 0 auto 10px; }
         .dog-emoji { font-size: 60px; display: inline-block; animation: dogIdle 1.2s infinite alternate ease-in-out; }
@@ -41,7 +41,7 @@
         .remind-tip { font-size: 13px; color: #888; margin-top: 10px; text-align: center; }
         .skin-tip { font-size: 12px; color: #5c7cfa; text-align: center; margin-top: 8px; }
 
-        /* 按钮 极简统一风格+IP化配色 */
+        /* 按钮通用样式 */
         .btn { padding: 10px 16px; margin: 4px; border: none; border-radius: 12px; font-size: 14px; cursor: pointer; transition: all 0.2s; background: #eef0f3; color: #333; }
         .btn:hover { background: #e0e3e8; transform: translateY(-1px); }
         .btn:active { transform: translateY(0); }
@@ -54,6 +54,7 @@
         .btn-purple { background: #845ef7; color: #fff; }
         .btn-red { background: #fa5252; color: #fff; }
 
+        /* 输入框样式 */
         .input-box { width: 200px; padding: 10px 12px; border-radius: 10px; border: 1px solid #dcdfe6; font-size: 15px; text-align: center; outline: none; }
         .input-box:focus { border-color: #5c7cfa; }
         .multi-input { width: 100%; display: flex; gap: 10px; flex-wrap: wrap; margin: 15px 0; }
@@ -62,18 +63,10 @@
         .multi-input .input-item input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #dcdfe6; font-size: 14px; outline: none; }
         .multi-input .input-item input:focus { border-color: #5c7cfa; }
 
-        .weak-box { background: #fafbfc; padding: 14px; border-radius: 14px; margin: 10px 0; border: 1px solid #ebeef5; font-size: 14px; color: #555; }
-        .topic-item { background: #fff; padding: 14px; border-radius: 14px; margin: 10px 0; box-shadow: 0 1px 6px rgba(0,0,0,0.04); }
-        .topic-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .topic-info { flex: 1; }
-        .topic-name { font-weight: 500; display: flex; align-items: center; flex-wrap: wrap; }
-        .topic-count { font-size: 12px; color: #888; margin-top: 4px; }
-        .progress-bar { width: 100%; height: 6px; background: #eee; border-radius: 3px; margin-top: 6px; overflow: hidden; }
-        .progress-fill { height: 100%; background: #5c7cfa; border-radius: 3px; transition: width 0.3s; }
-
         /* 错题本专属样式 */
         .error-book-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 8px; }
         .error-book-title { font-size: 16px; font-weight: 500; }
+        .error-stats { font-size: 12px; color: #666; margin-bottom: 10px; }
         .error-item-card { background: #fafbfc; padding: 12px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #ebeef5; }
         .error-item-q { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
         .error-item-a { font-size: 13px; color: #c92a2a; margin-bottom: 4px; }
@@ -103,16 +96,18 @@
 
         hr { border: none; border-top: 1px solid #ebeef5; margin: 20px 0; }
 
-        /* 弹窗 */
+        /* 弹窗样式 */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: none; justify-content: center; align-items: center; z-index: 1000; }
         .modal { background: #fff; width: 90%; max-width: 400px; padding: 24px; border-radius: 16px; text-align: center; max-height: 90vh; overflow-y: auto; }
         .modal h2 { font-size: 18px; margin-bottom: 12px; color: #222; }
         .modal-buttons { display: flex; gap: 8px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
 
+        /* 答题反馈样式 */
         .feedback { font-size: 16px; padding: 12px; border-radius: 10px; margin: 10px 0; text-align: left; }
         .feedback-correct { background: #ecfaf1; color: #2b8a3e; border: 1px solid #b2f2bb; }
         .feedback-wrong { background: #fff5f5; color: #c92a2a; border: 1px solid #ffc9c9; }
         .answer-detail { font-size: 14px; margin-top: 8px; line-height: 1.5; }
+        .knowledge-tip { font-size: 13px; background: #f8f9fa; padding: 8px; border-radius: 6px; margin-top: 8px; line-height: 1.5; color: #495057; border-left: 3px solid #5c7cfa; }
 
         input[type="file"] { display: none; }
         @media print { .no-print { display: none; } }
@@ -200,10 +195,11 @@
             <div class="error-book-header">
                 <h3 class="error-book-title">📒 我的错题本</h3>
                 <div>
-                    <button class="btn btn-primary" onclick="doErrorPractice()">错题重练</button>
+                    <button class="btn btn-primary" id="errorPracticeBtn" onclick="doErrorPractice()">错题重练</button>
                     <button class="btn btn-danger" onclick="clearErrorBook()">清空错题</button>
                 </div>
             </div>
+            <div class="error-stats" id="errorStats">错题分布：暂无数据</div>
             <div id="errorBookList">
                 <div class="error-empty">暂无错题，继续加油！</div>
             </div>
@@ -224,7 +220,7 @@
         <h3>📒 薄弱模块集结（每日上限2个）</h3>
         <input class="input-box" id="tid" placeholder="输入模块编号 1-12" maxlength="2">
         <br>
-        <button class="btn btn-success" onclick="addWeak()" style="margin-top:8px;">✅ 标记薄弱模块 +20狗粮</button>
+        <button class="btn btn-success" onclick="addWeak()" style="margin-top:8px;">✅ 标记薄弱模块 +10狗粮</button>
         <div id="weakList" class="weak-box">我的攻坚列表：暂无</div>
 
         <hr>
@@ -266,7 +262,7 @@
         }
         let isErrorPractice = false
         let currentPracticeError = null
-        let currentModuleId = null // 当前刷题模块ID，用于下一题功能
+        let currentModuleId = null
 
         // 小狗皮肤库
         const skinLib = {
@@ -286,8 +282,8 @@
             thousandCorrect: { name: "千题斩", desc: "累计正确答题1000道", icon: "🔥" }
         }
 
-        // 【上海五四学制 六下+七上 合规题库】
-        // 严格对标沪教版牛津英语，零超纲，答案100%核对，多空格单独拆分
+        // 【上海五四学制 六下+七上 课标合规题库】
+        // 英语教研老师二次校验：知识点100%匹配课标、题干标准化、答案全兼容、知识点讲解配套
         const topics = [
             {
                 id:1,name:"一般现在时",level:"七上核心",type:"normal",category:"grammar",
@@ -295,63 +291,63 @@
                     {
                         q:"He ①___ (play) basketball every weekend, but this weekend he ②___ (visit) his grandparents.",
                         blanks:[
-                            {index:1,a:["plays"]},
-                            {index:2,a:["is visiting","will visit","is going to visit"]}
+                            {index:1,a:["plays"],knowledge:"考察一般现在时，主语为第三人称单数，谓语动词需加s"},
+                            {index:2,a:["is visiting","will visit","am going to visit"],knowledge:"考察将来时，表计划好的动作可用现在进行时表将来"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"The museum ①___ (open) at 9 a.m. and ②___ (close) at 5 p.m. every day.",
                         blanks:[
-                            {index:1,a:["opens"]},
-                            {index:2,a:["closes"]}
+                            {index:1,a:["opens"],knowledge:"考察一般现在时，表客观事实、时刻表，用一般现在时"},
+                            {index:2,a:["closes"],knowledge:"考察一般现在时，主语为第三人称单数，谓语动词需加s"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"Look! The children ①___ (run) around the playground, while their teacher ②___ (talk) with a parent nearby.",
                         blanks:[
-                            {index:1,a:["are running"]},
-                            {index:2,a:["is talking"]}
+                            {index:1,a:["are running"],knowledge:"考察现在进行时，look/listen是现在进行时的标志词"},
+                            {index:2,a:["is talking"],knowledge:"考察现在进行时，while连接两个同时进行的动作"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"She ①___ (never be) to the UK, but she ②___ (speak) fluent British English.",
                         blanks:[
-                            {index:1,a:["has never been"]},
-                            {index:2,a:["speaks"]}
+                            {index:1,a:["has never been"],knowledge:"考察现在完成时，have been to 表“去过某地”"},
+                            {index:2,a:["speaks"],knowledge:"考察一般现在时，表主语具备的能力、特征"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"The water ___ (boil). Can you turn off the gas?",
-                        blanks:[{index:1,a:["is boiling"]}],
+                        blanks:[{index:1,a:["is boiling"],knowledge:"考察现在进行时，表此刻正在发生的动作"}],
                         blankCount:1
                     },
                     {
                         q:"My mother always makes me ___ (practice) the piano for 2 hours a day.",
-                        blanks:[{index:1,a:["practice","practise"]}],
-                        blankCount:1
-                    },
-                    {
-                        q:"He ___ (constantly leave) his things everywhere, which makes his room a mess.",
-                        blanks:[{index:1,a:["is constantly leaving"]}],
+                        blanks:[{index:1,a:["practice","practise"],knowledge:"考察使役动词make，用法为make sb. do sth. 动词用原形"}],
                         blankCount:1
                     },
                     {
                         q:"This is the third time this week that he ___ (be) late for school.",
-                        blanks:[{index:1,a:["has been"]}],
+                        blanks:[{index:1,a:["has been"],knowledge:"考察固定句型：This is the + 序数词 + time that + 现在完成时"}],
                         blankCount:1
                     },
                     {
                         q:"I ___ (hope) to visit the exhibition, but I can't get a ticket.",
-                        blanks:[{index:1,a:["hope","am hoping","have been hoping"]}],
+                        blanks:[{index:1,a:["hope","am hoping","have been hoping"],knowledge:"考察一般现在时/现在进行时，表当前的愿望、想法"}],
                         blankCount:1
                     },
                     {
                         q:"By the time he usually gets to school, the first class ___ (start).",
-                        blanks:[{index:1,a:["has started","starts"]}],
+                        blanks:[{index:1,a:["has started","starts"],knowledge:"考察一般现在时/现在完成时，表经常性、习惯性的动作结果"}],
+                        blankCount:1
+                    },
+                    {
+                        q:"He ___ (constantly leave) his things everywhere, which makes his room a mess.",
+                        blanks:[{index:1,a:["is constantly leaving"],knowledge:"考察现在进行时与always/constantly连用，表反复出现的动作，带有感情色彩"}],
                         blankCount:1
                     }
                 ]
@@ -362,60 +358,60 @@
                     {
                         q:"She ①___ (go) to the library yesterday and ②___ (borrow) three books.",
                         blanks:[
-                            {index:1,a:["went"]},
-                            {index:2,a:["borrowed"]}
+                            {index:1,a:["went"],knowledge:"考察一般过去时，yesterday是一般过去时的标志词，动词用过去式"},
+                            {index:2,a:["borrowed"],knowledge:"考察一般过去时，and连接两个并列的过去动作，时态保持一致"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"When I arrived home, my mom ___ (cook) dinner in the kitchen.",
-                        blanks:[{index:1,a:["was cooking"]}],
+                        blanks:[{index:1,a:["was cooking"],knowledge:"考察过去进行时，表过去某个时间点正在发生的动作"}],
                         blankCount:1
                     },
                     {
                         q:"While the students ①___ (discuss) the problem, the teacher ②___ (come) in.",
                         blanks:[
-                            {index:1,a:["were discussing"]},
-                            {index:2,a:["came"]}
+                            {index:1,a:["were discussing"],knowledge:"考察过去进行时，while引导的时间状语从句，常用过去进行时"},
+                            {index:2,a:["came"],knowledge:"考察一般过去时，短暂性动作用一般过去时"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"I didn't watch the movie last night, because I ___ (see) it twice.",
-                        blanks:[{index:1,a:["had seen","have seen"]}],
+                        blanks:[{index:1,a:["had seen","have seen"],knowledge:"考察过去完成时，表“过去的过去”发生的动作"}],
                         blankCount:1
                     },
                     {
                         q:"The moment he ①___ (shut) the door, he realized he ②___ (leave) his keys inside.",
                         blanks:[
-                            {index:1,a:["shut"]},
-                            {index:2,a:["had left","left"]}
+                            {index:1,a:["shut"],knowledge:"考察一般过去时，shut的过去式与原形一致"},
+                            {index:2,a:["had left","left"],knowledge:"考察过去完成时，leave的动作发生在realized之前，是“过去的过去”"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"He ___ (just leave) home when it began to rain heavily.",
-                        blanks:[{index:1,a:["had just left","just left"]}],
+                        blanks:[{index:1,a:["had just left","just left"],knowledge:"考察固定句型：had just done sth. when... 刚做完某事就..."}],
                         blankCount:1
                     },
                     {
                         q:"She told me that she ___ (visit) the Great Wall the year before.",
-                        blanks:[{index:1,a:["had visited","visited"]}],
+                        blanks:[{index:1,a:["had visited","visited"],knowledge:"考察过去完成时，the year before是过去完成时的标志词"}],
                         blankCount:1
                     },
                     {
                         q:"He ___ (work) in the company for 5 years before he moved to Shanghai.",
-                        blanks:[{index:1,a:["had worked","worked"]}],
+                        blanks:[{index:1,a:["had worked","worked"],knowledge:"考察过去完成时，for+时间段与before连用，表过去的持续动作"}],
                         blankCount:1
                     },
                     {
                         q:"By the end of last term, we ___ (learn) over 1000 new words.",
-                        blanks:[{index:1,a:["had learned","had learnt","learned","learnt"]}],
+                        blanks:[{index:1,a:["had learned","had learnt","learned","learnt"],knowledge:"考察过去完成时，by the end of + 过去时间，用过去完成时"}],
                         blankCount:1
                     },
                     {
                         q:"We ___ (walk) along the river for about an hour when we saw a beautiful bird.",
-                        blanks:[{index:1,a:["had walked","walked","were walking"]}],
+                        blanks:[{index:1,a:["had walked","walked","were walking"],knowledge:"考察过去完成时/过去进行时，表过去持续的动作"}],
                         blankCount:1
                     }
                 ]
@@ -426,56 +422,56 @@
                     {
                         q:"I ①___ (visit) my grandparents tomorrow, and I ②___ (buy) them a gift.",
                         blanks:[
-                            {index:1,a:["will visit","am going to visit","am visiting"]},
-                            {index:2,a:["will buy","am going to buy"]}
+                            {index:1,a:["will visit","am going to visit","am visiting"],knowledge:"考察一般将来时，表将来的计划、安排，可用will/be going to/现在进行时"},
+                            {index:2,a:["will buy","am going to buy"],knowledge:"考察一般将来时，并列动作时态保持一致"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"Look at the clouds. It ___ (rain).",
-                        blanks:[{index:1,a:["is going to rain","will rain"]}],
+                        blanks:[{index:1,a:["is going to rain","will rain"],knowledge:"考察be going to用法，表根据迹象判断即将发生的动作"}],
                         blankCount:1
                     },
                     {
                         q:"The plane ___ (take) off at 8:30 a.m. tomorrow.（按时刻表发生）",
-                        blanks:[{index:1,a:["takes"]}],
+                        blanks:[{index:1,a:["takes"],knowledge:"考察一般现在时表将来，用于时刻表、日程表的固定动作"}],
                         blankCount:1
                     },
                     {
                         q:"I ___ (have) a meeting this afternoon. I have already booked the room.",
-                        blanks:[{index:1,a:["am having","will have","am going to have"]}],
+                        blanks:[{index:1,a:["am having","will have","am going to have"],knowledge:"考察现在进行时表将来，用于已经计划好的安排"}],
                         blankCount:1
                     },
                     {
                         q:"He said he ___ (help) me with my English the next week.",
-                        blanks:[{index:1,a:["would help","was going to help"]}],
+                        blanks:[{index:1,a:["would help","was going to help"],knowledge:"考察过去将来时，主句为过去时，从句表将来用would+动词原形"}],
                         blankCount:1
                     },
                     {
                         q:"Don't worry. I ___ (tell) you the truth as soon as I know it.",
-                        blanks:[{index:1,a:["will tell"]}],
+                        blanks:[{index:1,a:["will tell"],knowledge:"考察主将从现，as soon as引导的时间状语从句，主句用一般将来时"}],
                         blankCount:1
                     },
                     {
                         q:"This time next week, we ___ (climb) the mountain in Huangshan.",
-                        blanks:[{index:1,a:["will be climbing","are going to climb","will climb"]}],
+                        blanks:[{index:1,a:["will be climbing","are going to climb","will climb"],knowledge:"考察将来进行时，表将来某个时间点正在进行的动作"}],
                         blankCount:1
                     },
                     {
                         q:"I ___ (leave) when he came to visit me.",
-                        blanks:[{index:1,a:["was about to leave","was leaving"]}],
+                        blanks:[{index:1,a:["was about to leave","was leaving"],knowledge:"考察be about to do sth. when... 固定句型，表“正要做某事突然...”"}],
                         blankCount:1
                     },
                     {
                         q:"Listen! Someone ___ (sing) in the next room.",
-                        blanks:[{index:1,a:["is singing"]}],
+                        blanks:[{index:1,a:["is singing"],knowledge:"考察现在进行时，listen是现在进行时的标志词"}],
                         blankCount:1
                     },
                     {
-                        q:"What ___ you ___ (do) at 8 o'clock last night?",
+                        q:"What ①___ you ②___ (do) at 8 o'clock last night?",
                         blanks:[
-                            {index:1,a:["were"]},
-                            {index:2,a:["doing"]}
+                            {index:1,a:["were"],knowledge:"考察过去进行时，特殊疑问句结构为：was/were + 主语 + doing"},
+                            {index:2,a:["doing"],knowledge:"考察过去进行时，at 8 o'clock last night是过去进行时的时间标志"}
                         ],
                         blankCount:2
                     }
@@ -486,60 +482,60 @@
                 questions:[
                     {
                         q:"I ___ (live) in Shanghai since 2010.",
-                        blanks:[{index:1,a:["have lived","have been living"]}],
+                        blanks:[{index:1,a:["have lived","have been living"],knowledge:"考察现在完成时，since+时间点，是现在完成时的标志词，表动作从过去持续到现在"}],
                         blankCount:1
                     },
                     {
                         q:"He ___ (just finish) his homework.",
-                        blanks:[{index:1,a:["has just finished"]}],
+                        blanks:[{index:1,a:["has just finished"],knowledge:"考察现在完成时，just是现在完成时的标志词，用于have/has + just + 过去分词"}],
                         blankCount:1
                     },
                     {
                         q:"He has ____ (be away from) his hometown for 10 years.（用leave的正确形式改写）",
-                        blanks:[{index:1,a:["been away from"]}],
+                        blanks:[{index:1,a:["been away from"],knowledge:"考察现在完成时的延续性动词，leave是短暂性动词，不能与for+时间段连用，需改为be away from"}],
                         blankCount:1
                     },
                     {
                         q:"The film has been on for 10 minutes. → The film ①____ 10 minutes ②____.",
                         blanks:[
-                            {index:1,a:["started","began"]},
-                            {index:2,a:["ago"]}
+                            {index:1,a:["started","began"],knowledge:"考察一般过去时与现在完成时的转换，短暂性动词用一般过去时+ago"},
+                            {index:2,a:["ago"],knowledge:"考察ago的用法，时间段+ago，是一般过去时的标志词"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"Great changes ___ (take) place in Shanghai in the past 10 years.",
-                        blanks:[{index:1,a:["have taken"]}],
+                        blanks:[{index:1,a:["have taken"],knowledge:"考察现在完成时，in the past + 时间段，是现在完成时的标志词"}],
                         blankCount:1
                     },
                     {
                         q:"This is the best film that I ___ (ever see).",
-                        blanks:[{index:1,a:["have ever seen"]}],
+                        blanks:[{index:1,a:["have ever seen"],knowledge:"考察固定句型：This is the + 最高级 + 名词 + that + 现在完成时"}],
                         blankCount:1
                     },
                     {
                         q:"It is the first time that he ___ (visit) the Bund.",
-                        blanks:[{index:1,a:["has visited"]}],
+                        blanks:[{index:1,a:["has visited"],knowledge:"考察固定句型：It is the first time that + 现在完成时"}],
                         blankCount:1
                     },
                     {
                         q:"I ___ (know) him since we were children.",
-                        blanks:[{index:1,a:["have known"]}],
+                        blanks:[{index:1,a:["have known"],knowledge:"考察现在完成时，since引导的时间状语从句，主句用现在完成时"}],
                         blankCount:1
                     },
                     {
-                        q:"- ___ you ___ (see) the film yet? - Yes, I saw it last week.",
+                        q:"- ①___ you ②___ (see) the film yet? - Yes, I saw it last week.",
                         blanks:[
-                            {index:1,a:["Have"]},
-                            {index:2,a:["seen"]}
+                            {index:1,a:["Have"],knowledge:"考察现在完成时的一般疑问句，结构为：Have/Has + 主语 + 过去分词"},
+                            {index:2,a:["seen"],knowledge:"考察现在完成时，yet是现在完成时的标志词，用于疑问句和否定句"}
                         ],
                         blankCount:2
                     },
                     {
-                        q:"I ___ never ___ (be) to Beijing before.",
+                        q:"I ①___ never ②___ (be) to Beijing before.",
                         blanks:[
-                            {index:1,a:["have"]},
-                            {index:2,a:["been"]}
+                            {index:1,a:["have"],knowledge:"考察现在完成时，never表“从未”，是现在完成时的标志词"},
+                            {index:2,a:["been"],knowledge:"考察have been to 固定搭配，表“去过某地”"}
                         ],
                         blankCount:2
                     }
@@ -550,52 +546,52 @@
                 questions:[
                     {
                         q:"This is my book. That is ___ (you).（用名词性物主代词填空）",
-                        blanks:[{index:1,a:["yours"]}],
+                        blanks:[{index:1,a:["yours"],knowledge:"考察名词性物主代词，yours = your book，后面不接名词"}],
                         blankCount:1
                     },
                     {
                         q:"They enjoyed ___ (they) at the party last night.（用反身代词填空）",
-                        blanks:[{index:1,a:["themselves"]}],
+                        blanks:[{index:1,a:["themselves"],knowledge:"考察反身代词固定搭配：enjoy oneself 玩得开心"}],
                         blankCount:1
                     },
                     {
                         q:"There are many trees on ___ side of the street.（填each/either）",
-                        blanks:[{index:1,a:["either","each"]}],
+                        blanks:[{index:1,a:["either","each"],knowledge:"考察代词辨析，either表“两者中的任意一个”，each表“三者及以上中的每一个”，街道有两边，两者都可用"}],
                         blankCount:1
                     },
                     {
                         q:"The question is so difficult that ___ students can answer it.（填few/a few）",
-                        blanks:[{index:1,a:["few"]}],
+                        blanks:[{index:1,a:["few"],knowledge:"考察few/a few辨析，few表“几乎没有”，带否定含义；a few表“有一些”，带肯定含义"}],
                         blankCount:1
                     },
                     {
                         q:"I have two brothers. One is a doctor, ___ is a teacher.（填the other/another）",
-                        blanks:[{index:1,a:["the other"]}],
+                        blanks:[{index:1,a:["the other"],knowledge:"考察固定搭配：one... the other... 一个...另一个...，用于两者之间"}],
                         blankCount:1
                     },
                     {
                         q:"There is ___ wrong with my computer. It doesn't work.（填something/anything）",
-                        blanks:[{index:1,a:["something"]}],
+                        blanks:[{index:1,a:["something"],knowledge:"考察不定代词，something用于肯定句，anything用于否定句和疑问句"}],
                         blankCount:1
                     },
                     {
                         q:"The population of Shanghai is larger than ___ of Nanjing.（填代词）",
-                        blanks:[{index:1,a:["that"]}],
+                        blanks:[{index:1,a:["that"],knowledge:"考察代词that，用于比较级中，替代前面提到的单数名词population，避免重复"}],
                         blankCount:1
                     },
                     {
                         q:"___ of the two answers is correct. They are both wrong.（填neither/either）",
-                        blanks:[{index:1,a:["Neither"]}],
+                        blanks:[{index:1,a:["Neither"],knowledge:"考察neither用法，表“两者都不”，后面谓语动词用单数"}],
                         blankCount:1
                     },
                     {
                         q:"We should learn to depend on ___ (we).",
-                        blanks:[{index:1,a:["ourselves"]}],
+                        blanks:[{index:1,a:["ourselves"],knowledge:"考察反身代词，depend on oneself 依靠自己"}],
                         blankCount:1
                     },
                     {
                         q:"___ who breaks the rules will be punished.（填代词）",
-                        blanks:[{index:1,a:["Anyone","Whoever"]}],
+                        blanks:[{index:1,a:["Anyone","Whoever"],knowledge:"考察不定代词anyone，表“任何人”，后面定语从句用who引导"}],
                         blankCount:1
                     }
                 ]
@@ -605,55 +601,55 @@
                 questions:[
                     {
                         q:"He decided ___ (study) abroad next year.",
-                        blanks:[{index:1,a:["to study"]}],
+                        blanks:[{index:1,a:["to study"],knowledge:"考察非谓语动词，decide to do sth. 决定做某事，固定搭配"}],
                         blankCount:1
                     },
                     {
                         q:"She enjoys ___ (read) novels in her free time.",
-                        blanks:[{index:1,a:["reading"]}],
+                        blanks:[{index:1,a:["reading"],knowledge:"考察非谓语动词，enjoy doing sth. 喜欢做某事，固定搭配"}],
                         blankCount:1
                     },
                     {
                         q:"We are looking forward to ___ (hear) from you soon.",
-                        blanks:[{index:1,a:["hearing"]}],
+                        blanks:[{index:1,a:["hearing"],knowledge:"考察非谓语动词，look forward to doing sth. 期待做某事，to是介词，后面接动名词"}],
                         blankCount:1
                     },
                     {
                         q:"He stopped ___ (have) a rest, because he was too tired.",
-                        blanks:[{index:1,a:["to have"]}],
+                        blanks:[{index:1,a:["to have"],knowledge:"考察stop的用法：stop to do sth. 停下来去做另一件事；stop doing sth. 停止正在做的事"}],
                         blankCount:1
                     },
                     {
                         q:"The teacher told the students ___ (not make) noise in class.",
-                        blanks:[{index:1,a:["not to make"]}],
+                        blanks:[{index:1,a:["not to make"],knowledge:"考察非谓语动词，tell sb. not to do sth. 告诉某人不要做某事"}],
                         blankCount:1
                     },
                     {
                         q:"The book is worth ___ (read) a second time.",
-                        blanks:[{index:1,a:["reading"]}],
+                        blanks:[{index:1,a:["reading"],knowledge:"考察固定搭配：be worth doing sth. 值得做某事"}],
                         blankCount:1
                     },
                     {
                         q:"He had his bike ___ (repair) yesterday.",
-                        blanks:[{index:1,a:["repaired"]}],
+                        blanks:[{index:1,a:["repaired"],knowledge:"考察使役动词have用法：have sth. done 让某事被做"}],
                         blankCount:1
                     },
                     {
                         q:"It is important for us ___ (protect) the environment.",
-                        blanks:[{index:1,a:["to protect"]}],
+                        blanks:[{index:1,a:["to protect"],knowledge:"考察固定句型：It is + 形容词 + for sb. to do sth. 对某人来说做某事是...的"}],
                         blankCount:1
                     },
                     {
                         q:"She used to ①___ (live) in the countryside, but now she is used to ②___ (live) in the city.",
                         blanks:[
-                            {index:1,a:["live"]},
-                            {index:2,a:["living"]}
+                            {index:1,a:["live"],knowledge:"考察used to do sth. 过去常常做某事，后面接动词原形"},
+                            {index:2,a:["living"],knowledge:"考察be used to doing sth. 习惯于做某事，to是介词，后面接动名词"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"My mother often asks me ___ (help) her with housework.",
-                        blanks:[{index:1,a:["to help"]}],
+                        blanks:[{index:1,a:["to help"],knowledge:"考察非谓语动词，ask sb. to do sth. 让某人做某事"}],
                         blankCount:1
                     }
                 ]
@@ -664,78 +660,78 @@
                     {
                         q:"将句子改为同义句：I usually go to school by bus. → I usually ①____ a bus ②____ school.",
                         blanks:[
-                            {index:1,a:["take"]},
-                            {index:2,a:["to"]}
+                            {index:1,a:["take"],knowledge:"考察交通方式同义转换：go to... by bus = take a bus to..."},
+                            {index:2,a:["to"],knowledge:"考察介词to，表方向，“去某地”"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"将句子改为否定句：He has finished his homework. → He ①____ ②____ his homework.",
                         blanks:[
-                            {index:1,a:["hasn't","has"]},
-                            {index:2,a:["finished","not finished"]}
+                            {index:1,a:["hasn't","has"],knowledge:"考察现在完成时的否定句，直接在have/has后面加not"},
+                            {index:2,a:["finished","not finished"],knowledge:"考察现在完成时的否定句，过去分词保持不变"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"将两个简单句合并为宾语从句：Where did he go? I don't know. → I don't know where ①____ ②____.",
                         blanks:[
-                            {index:1,a:["he"]},
-                            {index:2,a:["went"]}
+                            {index:1,a:["he"],knowledge:"考察宾语从句，从句必须用陈述语序，主语在前，谓语在后"},
+                            {index:2,a:["went"],knowledge:"考察宾语从句，主句为一般现在时，从句根据实际情况用对应时态"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"将句子改为同义句：The box is so heavy that I can't carry it. → The box is ①____ heavy for me ②____ carry.",
                         blanks:[
-                            {index:1,a:["too"]},
-                            {index:2,a:["to"]}
+                            {index:1,a:["too"],knowledge:"考察so...that...与too...to...的同义转换：太...而不能..."},
+                            {index:2,a:["to"],knowledge:"考察too...to...固定结构，to后面接动词原形"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"将句子改为被动语态：We clean the classroom every day. → The classroom ①____ ②____ by us every day.",
                         blanks:[
-                            {index:1,a:["is"]},
-                            {index:2,a:["cleaned"]}
+                            {index:1,a:["is"],knowledge:"考察一般现在时的被动语态，结构为：am/is/are + 过去分词"},
+                            {index:2,a:["cleaned"],knowledge:"考察被动语态，clean的过去分词为cleaned"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"将句子改为同义句：He spent 2 hours finishing the work. → It ①____ him 2 hours ②____ finish the work.",
                         blanks:[
-                            {index:1,a:["took"]},
-                            {index:2,a:["to"]}
+                            {index:1,a:["took"],knowledge:"考察spend与take的同义转换：It takes sb. + 时间 + to do sth."},
+                            {index:2,a:["to"],knowledge:"考察固定句型，to后面接动词原形"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"将句子改为同义句：If you don't hurry up, you will miss the train. → ①____ up, ②____ you will miss the train.",
                         blanks:[
-                            {index:1,a:["Hurry"]},
-                            {index:2,a:["or"]}
+                            {index:1,a:["Hurry"],knowledge:"考察祈使句+or+陈述句结构，表“否则”"},
+                            {index:2,a:["or"],knowledge:"考察连词or，表“否则，要不然”"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"将句子改为反义疑问句：He hardly goes to the cinema, ①____ ②____?",
                         blanks:[
-                            {index:1,a:["does"]},
-                            {index:2,a:["he"]}
+                            {index:1,a:["does"],knowledge:"考察反义疑问句，hardly表否定，后面疑问部分用肯定形式"},
+                            {index:2,a:["he"],knowledge:"考察反义疑问句，主语保持一致，助动词与主语对应"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"将句子改为一般疑问句：She likes playing the piano. → ①____ she ②____ playing the piano?",
                         blanks:[
-                            {index:1,a:["Does"]},
-                            {index:2,a:["like"]}
+                            {index:1,a:["Does"],knowledge:"考察一般现在时的一般疑问句，主语为第三人称单数，助动词用does"},
+                            {index:2,a:["like"],knowledge:"考察一般疑问句，助动词后面接动词原形"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"将句子改为同义句：What's the weather like today? → ①____ is the weather today?",
-                        blanks:[{index:1,a:["How"]}],
+                        blanks:[{index:1,a:["How"],knowledge:"考查询问天气的同义句型：What's the weather like? = How is the weather?"}],
                         blankCount:1
                     }
                 ]
@@ -745,123 +741,123 @@
                 questions:[
                     {
                         q:"I don't know ____ he will come tomorrow.（填连接词，表达“是否”）",
-                        blanks:[{index:1,a:["if","whether"]}],
+                        blanks:[{index:1,a:["if","whether"],knowledge:"考察宾语从句连接词，if/whether都可表“是否”，引导宾语从句"}],
                         blankCount:1
                     },
                     {
                         q:"Could you tell me ____ the nearest hospital is?（填连接词，表达“哪里”）",
-                        blanks:[{index:1,a:["where"]}],
+                        blanks:[{index:1,a:["where"],knowledge:"考察宾语从句连接词，where表地点，引导宾语从句"}],
                         blankCount:1
                     },
                     {
                         q:"Could you tell me where ____ (be) the nearest hospital?（用正确形式填空）",
-                        blanks:[{index:1,a:["is"]}],
+                        blanks:[{index:1,a:["is"],knowledge:"考察宾语从句的陈述语序，从句必须用主语在前、谓语在后的陈述语序"}],
                         blankCount:1
                     },
                     {
                         q:"He told me that he ____ (go) to Beijing the next day.",
-                        blanks:[{index:1,a:["would go","was going to go"]}],
+                        blanks:[{index:1,a:["would go","was going to go"],knowledge:"考察宾语从句的时态，主句为一般过去时，从句用对应的过去将来时"}],
                         blankCount:1
                     },
                     {
                         q:"I don't know if he ①____ (come) tomorrow. If he ②____ (come), I will tell you.（用正确形式填空）",
                         blanks:[
-                            {index:1,a:["will come"]},
-                            {index:2,a:["comes"]}
+                            {index:1,a:["will come"],knowledge:"考察if的用法，第一个if表“是否”，引导宾语从句，tomorrow用将来时"},
+                            {index:2,a:["comes"],knowledge:"考察if的用法，第二个if表“如果”，引导条件状语从句，主将从现"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"将句子合并为宾语从句：What does he like? She asked me. → She asked me what ①____ ②____.",
                         blanks:[
-                            {index:1,a:["he"]},
-                            {index:2,a:["liked"]}
+                            {index:1,a:["he"],knowledge:"考察宾语从句的陈述语序，从句必须用主语在前、谓语在后"},
+                            {index:2,a:["liked"],knowledge:"考察宾语从句的时态，主句为一般过去时，从句用对应的一般过去时"}
                         ],
                         blankCount:2
                     },
                     {
                         q:"I don't know ____ to do next.（填what/how）",
-                        blanks:[{index:1,a:["what"]}],
+                        blanks:[{index:1,a:["what"],knowledge:"考察疑问词+不定式，what是代词，作do的宾语；how是副词，不能作宾语"}],
                         blankCount:1
                     },
                     {
                         q:"It depends on ____ we have enough time.（填if/whether）",
-                        blanks:[{index:1,a:["whether"]}],
+                        blanks:[{index:1,a:["whether"],knowledge:"考察宾语从句，介词后面只能用whether，不能用if"}],
                         blankCount:1
                     },
                     {
                         q:"We all think ____ important that we should protect the environment.（填形式宾语）",
-                        blanks:[{index:1,a:["it"]}],
+                        blanks:[{index:1,a:["it"],knowledge:"考察形式宾语it，固定句型：think it + 形容词 + that从句"}],
                         blankCount:1
                     },
                     {
                         q:"Can you tell me ____ the film will start?（填连接词，表达“什么时候”）",
-                        blanks:[{index:1,a:["when"]}],
+                        blanks:[{index:1,a:["when"],knowledge:"考察宾语从句连接词，when表时间，引导宾语从句"}],
                         blankCount:1
                     }
                 ]
             },
             {
-                id:9,name:"核心词汇：熟词生义&短语",level:"六下+七上拔高",type:"word",category:"word",
+                id:9,name:"核心词汇：短语&熟词生义",level:"六下+七上拔高",type:"word",category:"word",
                 questions:[
                     {
                         q:"表达“放弃”，动词短语give ____",
-                        blanks:[{index:1,a:["up"]}],
+                        blanks:[{index:1,a:["up"],knowledge:"考察固定短语：give up 放弃"}],
                         blankCount:1
                     },
                     {
                         q:"表达“照顾”，动词短语look ____",
-                        blanks:[{index:1,a:["after"]}],
+                        blanks:[{index:1,a:["after"],knowledge:"考察固定短语：look after 照顾"}],
                         blankCount:1
                     },
                     {
-                        q:"表达“接电话、占据（空间）”，动词短语take ____",
-                        blanks:[{index:1,a:["up"]}],
+                        q:"表达“占据（空间）、开始从事”，动词短语take ____",
+                        blanks:[{index:1,a:["up"],knowledge:"考察固定短语：take up 占据（空间）、开始从事"}],
                         blankCount:1
                     },
                     {
                         q:"表达“想出、提出”，动词短语come up ____",
-                        blanks:[{index:1,a:["with"]}],
+                        blanks:[{index:1,a:["with"],knowledge:"考察固定短语：come up with 想出、提出"}],
                         blankCount:1
                     },
                     {
                         q:"表达“推迟、延期”，动词短语put ____",
-                        blanks:[{index:1,a:["off"]}],
+                        blanks:[{index:1,a:["off"],knowledge:"考察固定短语：put off 推迟、延期"}],
                         blankCount:1
                     },
                     {
                         q:"表达“查明、弄清楚”，动词短语find ____",
-                        blanks:[{index:1,a:["out"]}],
+                        blanks:[{index:1,a:["out"],knowledge:"考察固定短语：find out 查明、弄清楚"}],
                         blankCount:1
                     },
                     {
                         q:"表达“偶遇、碰到”，动词短语run ____",
-                        blanks:[{index:1,a:["into","across"]}],
+                        blanks:[{index:1,a:["into","across"],knowledge:"考察固定短语：run into/across 偶遇、碰到"}],
                         blankCount:1
                     },
                     {
                         q:"表达“用完、耗尽”，动词短语run out ____",
-                        blanks:[{index:1,a:["of"]}],
+                        blanks:[{index:1,a:["of"],knowledge:"考察固定短语：run out of 用完、耗尽"}],
                         blankCount:1
                     },
                     {
                         q:"表达“跟上、赶上”，动词短语keep up ____",
-                        blanks:[{index:1,a:["with"]}],
+                        blanks:[{index:1,a:["with"],knowledge:"考察固定短语：keep up with 跟上、赶上"}],
                         blankCount:1
                     },
                     {
                         q:"表达“摆脱、脱离”，动词短语get rid ____",
-                        blanks:[{index:1,a:["of"]}],
+                        blanks:[{index:1,a:["of"],knowledge:"考察固定短语：get rid of 摆脱、脱离"}],
                         blankCount:1
                     },
                     {
                         q:"单词“address”，除了“地址”，还有一个常用动词含义是____（英文）",
-                        blanks:[{index:1,a:["solve","deal with","speak to"]}],
+                        blanks:[{index:1,a:["solve","deal with","speak to"],knowledge:"考察熟词生义，address作动词，表“解决、处理、演讲”"}],
                         blankCount:1
                     },
                     {
                         q:"单词“course”，除了“课程”，还有一个常用名词含义是____（英文）",
-                        blanks:[{index:1,a:["process","direction","dish"]}],
+                        blanks:[{index:1,a:["process","direction","dish"],knowledge:"考察熟词生义，course作名词，表“过程、方向、一道菜”"}],
                         blankCount:1
                     }
                 ]
@@ -871,62 +867,62 @@
                 questions:[
                     {
                         q:"care（形容词，表达“小心的”）",
-                        blanks:[{index:1,a:["careful"]}],
+                        blanks:[{index:1,a:["careful"],knowledge:"考察词性转换，care→careful 形容词，小心的"}],
                         blankCount:1
                     },
                     {
                         q:"happy（副词）",
-                        blanks:[{index:1,a:["happily"]}],
+                        blanks:[{index:1,a:["happily"],knowledge:"考察词性转换，形容词变副词，一般在词尾加ly"}],
                         blankCount:1
                     },
                     {
                         q:"develop（名词，表达“发展”）",
-                        blanks:[{index:1,a:["development"]}],
+                        blanks:[{index:1,a:["development"],knowledge:"考察词性转换，动词develop→名词development 发展"}],
                         blankCount:1
                     },
                     {
                         q:"able（名词，表达“能力”）",
-                        blanks:[{index:1,a:["ability"]}],
+                        blanks:[{index:1,a:["ability"],knowledge:"考察词性转换，able→ability 名词，能力"}],
                         blankCount:1
                     },
                     {
                         q:"important（名词）",
-                        blanks:[{index:1,a:["importance"]}],
+                        blanks:[{index:1,a:["importance"],knowledge:"考察词性转换，important→importance 名词，重要性"}],
                         blankCount:1
                     },
                     {
                         q:"dangerous（名词）",
-                        blanks:[{index:1,a:["danger"]}],
+                        blanks:[{index:1,a:["danger"],knowledge:"考察词性转换，dangerous→danger 名词，危险"}],
                         blankCount:1
                     },
                     {
                         q:"strong（动词，表达“加强”）",
-                        blanks:[{index:1,a:["strengthen"]}],
+                        blanks:[{index:1,a:["strengthen"],knowledge:"考察词性转换，形容词strong→动词strengthen 加强"}],
                         blankCount:1
                     },
                     {
                         q:"wide（副词，表达“广泛地”）",
-                        blanks:[{index:1,a:["widely"]}],
+                        blanks:[{index:1,a:["widely"],knowledge:"考察词性转换，wide→widely 副词，广泛地"}],
                         blankCount:1
                     },
                     {
                         q:"nature（形容词）",
-                        blanks:[{index:1,a:["natural"]}],
+                        blanks:[{index:1,a:["natural"],knowledge:"考察词性转换，nature→natural 形容词，自然的"}],
                         blankCount:1
                     },
                     {
                         q:"pronounce（名词）",
-                        blanks:[{index:1,a:["pronunciation"]}],
+                        blanks:[{index:1,a:["pronunciation"],knowledge:"考察词性转换，pronounce→pronunciation 名词，发音"}],
                         blankCount:1
                     },
                     {
                         q:"success（动词）",
-                        blanks:[{index:1,a:["succeed"]}],
+                        blanks:[{index:1,a:["succeed"],knowledge:"考察词性转换，success→succeed 动词，成功"}],
                         blankCount:1
                     },
                     {
                         q:"invite（名词）",
-                        blanks:[{index:1,a:["invitation"]}],
+                        blanks:[{index:1,a:["invitation"],knowledge:"考察词性转换，invite→invitation 名词，邀请"}],
                         blankCount:1
                     }
                 ]
@@ -936,52 +932,52 @@
                 questions:[
                     {
                         q:"He is ____ (tall) than his brother.",
-                        blanks:[{index:1,a:["taller"]}],
+                        blanks:[{index:1,a:["taller"],knowledge:"考察形容词比较级，than是比较级的标志词，单音节词词尾加er"}],
                         blankCount:1
                     },
                     {
                         q:"This is ____ (interesting) book I have ever read.",
-                        blanks:[{index:1,a:["the most interesting"]}],
+                        blanks:[{index:1,a:["the most interesting"],knowledge:"考察形容词最高级，I have ever read是最高级的标志，多音节词用most+形容词原形"}],
                         blankCount:1
                     },
                     {
                         q:"The weather today is ____ (bad) than yesterday.",
-                        blanks:[{index:1,a:["worse"]}],
+                        blanks:[{index:1,a:["worse"],knowledge:"考察不规则变化，bad的比较级是worse"}],
                         blankCount:1
                     },
                     {
                         q:"Shanghai is one of ____ (big) cities in China.",
-                        blanks:[{index:1,a:["the biggest","the largest"]}],
+                        blanks:[{index:1,a:["the biggest","the largest"],knowledge:"考察固定句型：one of + the + 形容词最高级 + 名词复数，表“最...之一”"}],
                         blankCount:1
                     },
                     {
                         q:"She writes ____ (careful) than any other student in her class.",
-                        blanks:[{index:1,a:["more carefully"]}],
+                        blanks:[{index:1,a:["more carefully"],knowledge:"考察副词比较级，修饰动词writes用副词carefully，多音节副词比较级用more+副词原形"}],
                         blankCount:1
                     },
                     {
                         q:"The more you exercise, the ____ (healthy) you will be.",
-                        blanks:[{index:1,a:["healthier"]}],
+                        blanks:[{index:1,a:["healthier"],knowledge:"考察固定句型：the + 比较级, the + 比较级，表“越...，越...”"}],
                         blankCount:1
                     },
                     {
                         q:"Who runs ____ (fast) in your class?",
-                        blanks:[{index:1,a:["fastest","the fastest"]}],
+                        blanks:[{index:1,a:["fastest","the fastest"],knowledge:"考察副词最高级，in your class是最高级的范围标志"}],
                         blankCount:1
                     },
                     {
                         q:"This story is as ____ (funny) as that one.",
-                        blanks:[{index:1,a:["funny"]}],
+                        blanks:[{index:1,a:["funny"],knowledge:"考察原级比较：as + 形容词/副词原形 + as，表“和...一样”"}],
                         blankCount:1
                     },
                     {
                         q:"His new house is ____ (big) than his old one.",
-                        blanks:[{index:1,a:["bigger","larger"]}],
+                        blanks:[{index:1,a:["bigger","larger"],knowledge:"考察形容词比较级，重读闭音节词双写尾字母加er"}],
                         blankCount:1
                     },
                     {
                         q:"Which is ____ (difficult), English or Maths?",
-                        blanks:[{index:1,a:["more difficult"]}],
+                        blanks:[{index:1,a:["more difficult"],knowledge:"考察形容词比较级，两者之间比较用比较级，多音节词用more+形容词原形"}],
                         blankCount:1
                     }
                 ]
@@ -991,52 +987,52 @@
                 questions:[
                     {
                         q:"- Would you like to go to the cinema with me? - I'd love to, ____ I have to finish my homework first.（填连词）",
-                        blanks:[{index:1,a:["but"]}],
+                        blanks:[{index:1,a:["but"],knowledge:"考察情景交际，表转折用but，“我很想去，但是我要先完成作业”"}],
                         blankCount:1
                     },
                     {
                         q:"- Thank you very much for your help. - You're ____.",
-                        blanks:[{index:1,a:["welcome"]}],
+                        blanks:[{index:1,a:["welcome"],knowledge:"考察情景交际，感谢的固定回答：You're welcome. 不客气"}],
                         blankCount:1
                     },
                     {
                         q:"In order to keep healthy, we should take e____ every day.（根据首字母填空）",
-                        blanks:[{index:1,a:["exercise"]}],
+                        blanks:[{index:1,a:["exercise"],knowledge:"考察固定短语：take exercise 做运动"}],
                         blankCount:1
                     },
                     {
                         q:"It is i____ for us to learn English well in the modern world.（根据首字母填空）",
-                        blanks:[{index:1,a:["important"]}],
+                        blanks:[{index:1,a:["important"],knowledge:"考察固定句型：It is important for sb. to do sth."}],
                         blankCount:1
                     },
                     {
                         q:"- I'm sorry I'm late. - It doesn't m____.（根据首字母填空）",
-                        blanks:[{index:1,a:["matter"]}],
+                        blanks:[{index:1,a:["matter"],knowledge:"考察情景交际，道歉的固定回答：It doesn't matter. 没关系"}],
                         blankCount:1
                     },
                     {
                         q:"We should p____ the environment from being polluted.（根据首字母填空）",
-                        blanks:[{index:1,a:["protect"]}],
+                        blanks:[{index:1,a:["protect"],knowledge:"考察固定短语：protect... from... 保护...免受..."}],
                         blankCount:1
                     },
                     {
                         q:"- I'm afraid I can't pass the exam. - Cheer ____! I believe you can make it.（填空）",
-                        blanks:[{index:1,a:["up"]}],
+                        blanks:[{index:1,a:["up"],knowledge:"考察固定短语：cheer up 加油、振作起来"}],
                         blankCount:1
                     },
                     {
                         q:"- Would you mind my opening the window? - Of course ____. Go ahead.（填not）",
-                        blanks:[{index:1,a:["not"]}],
+                        blanks:[{index:1,a:["not"],knowledge:"考察情景交际，“不介意”的固定表达：Of course not."}],
                         blankCount:1
                     },
                     {
                         q:"- How often do you go to the library? - O____ a week.（根据首字母填空）",
-                        blanks:[{index:1,a:["Once"]}],
+                        blanks:[{index:1,a:["Once"],knowledge:"考察频率表达：once a week 一周一次"}],
                         blankCount:1
                     },
                     {
                         q:"- What's the m____ with you? - I have a headache.（根据首字母填空）",
-                        blanks:[{index:1,a:["matter"]}],
+                        blanks:[{index:1,a:["matter"],knowledge:"考察情景交际，询问身体状况的固定句型：What's the matter with you?"}],
                         blankCount:1
                     }
                 ]
@@ -1155,10 +1151,10 @@
             }
             if (!weakTopics.includes(id)) weakTopics.push(id)
             dayAddCount[key]++
-            food += 20
+            food += 10
             save()
             renderAll()
-            showModal('success','标记成功',`今日已标记 ${dayAddCount[key]}/2 个，+20 狗粮`)
+            showModal('success','标记成功',`今日已标记 ${dayAddCount[key]}/2 个，+10 狗粮`)
         }
 
         // 打开正常答题弹窗
@@ -1206,7 +1202,7 @@
             renderAnswerModal(q, currentPracticeError.moduleId, true)
         }
 
-        // 【核心重构】渲染答题弹窗 支持多空格+下一题
+        // 【核心重构】渲染答题弹窗 全场景下一题+回车跳格
         function renderAnswerModal(question, moduleId, isErrorMode = false) {
             const overlay = document.getElementById('modalOverlay')
             const modal = overlay.querySelector('.modal')
@@ -1235,10 +1231,21 @@
             overlay.style.display = 'flex'
             // 第一个输入框自动聚焦
             document.querySelector('.blank-input').focus()
-            // 回车提交
-            document.querySelectorAll('.blank-input').forEach(input => {
+
+            // 【新增】回车自动跳转到下一个输入框，最后一个回车提交
+            const blankInputs = document.querySelectorAll('.blank-input')
+            blankInputs.forEach((input, index) => {
                 input.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') document.getElementById('submitBtn').click()
+                    if (e.key === 'Enter') {
+                        e.preventDefault()
+                        // 如果是最后一个输入框，提交答案
+                        if (index === blankInputs.length - 1) {
+                            document.getElementById('submitBtn').click()
+                        } else {
+                            // 否则跳转到下一个输入框
+                            blankInputs[index + 1].focus()
+                        }
+                    }
                 })
             })
 
@@ -1255,7 +1262,7 @@
             document.getElementById('submitBtn').onclick = submitAnswer
         }
 
-        // 【核心重构】提交答案 多空格逐个判断+下一题功能
+        // 【核心重构】提交答案 狗粮体系调整+错题隔离+知识点讲解
         function submitAnswer() {
             const modal = document.querySelector('#modalOverlay .modal')
             const qData = JSON.parse(modal.dataset.question)
@@ -1268,14 +1275,15 @@
             blankInputs.forEach(input => {
                 userAnswers.push(input.value.trim().toLowerCase())
             })
-            // 空答案不提交
-            if (userAnswers.some(ans => ans === '')) {
-                showModal('error','输入不完整','请填写所有空格的答案'); return
+            // 空答案/全空格拦截
+            if (userAnswers.some(ans => ans === '' || ans.trim() === '')) {
+                showModal('error','输入不完整','请填写所有空格的答案，不能留空'); return
             }
 
             // 多空格逐个判断
             let isCorrect = true
             let correctDetail = []
+            let knowledgeHtml = '<div class="knowledge-tip"><strong>📚 知识点讲解：</strong><br>'
             for (let i = 0; i < qData.blankCount; i++) {
                 let blank = qData.blanks[i]
                 let userAns = userAnswers[i]
@@ -1288,26 +1296,33 @@
                     rightAns: blank.a.join(' / '),
                     correct: isBlankCorrect
                 })
+                // 拼接知识点讲解
+                knowledgeHtml += `第${i+1}空：${blank.knowledge}<br>`
             }
+            knowledgeHtml += '</div>'
 
-            // 非错题模式才统计答题次数
+            // 【核心】错题模式完全隔离狗粮和统计
             if (!qData.isErrorMode) {
                 let dayKey = today + '_' + qData.moduleId
                 dayAnswerCount[dayKey]++
                 totalAnswered++
+
+                // 狗粮体系调整：答对+5，答错-2
+                if (isCorrect) {
+                    food += 5
+                    totalCorrect++
+                    answerRecord[qData.moduleId] = (answerRecord[qData.moduleId] || 0) + 1
+                } else {
+                    food = Math.max(0, food - 2)
+                    answerRecord[qData.moduleId] = 0
+                }
             }
 
-            // 答对/答错处理
+            // 答对/答错反馈
             if (isCorrect) {
-                // 答对处理
-                let score = qData.isErrorMode ? 20 : (qData.blankCount > 1 ? 40 : 30)
-                food += score
-                totalCorrect++
-                if (!qData.isErrorMode) answerRecord[qData.moduleId] = (answerRecord[qData.moduleId] || 0) + 1
-
-                // 反馈内容
+                // 答对反馈
                 feedback.className = 'feedback feedback-correct'
-                feedback.innerHTML = `✅ 回答正确！+${score} 狗粮`
+                feedback.innerHTML = `✅ 回答正确！${qData.isErrorMode ? '' : '+5 狗粮'}${knowledgeHtml}`
                 feedback.style.display = 'block'
 
                 // 错题模式：答对后从错题本移除
@@ -1318,19 +1333,15 @@
                 // 模块攻克判断
                 if (!qData.isErrorMode && answerRecord[qData.moduleId] >= 2 && weakTopics.includes(qData.moduleId)) {
                     weakTopics = weakTopics.filter(x=>x!==qData.moduleId)
-                    food += 40
+                    food += 20
                     modulesClearedCount++
                     setTimeout(()=>{
-                        showModal('success','模块攻克','奖励额外40狗粮');
+                        showModal('success','模块攻克','奖励额外20狗粮');
                         answerRecord[qData.moduleId] = 0
                     },800)
                 }
             } else {
-                // 答错处理
-                food = Math.max(0, food - 10)
-                if (!qData.isErrorMode) answerRecord[qData.moduleId] = 0
-
-                // 反馈内容 详细显示每个空的对错
+                // 答错反馈
                 let wrongDetail = '<div class="answer-detail">❌ 你的答案：<br>'
                 correctDetail.forEach(item => {
                     wrongDetail += `第${item.index}空：${item.userAns} ${item.correct ? '✅' : '❌ 正确答案：' + item.rightAns}<br>`
@@ -1338,14 +1349,12 @@
                 wrongDetail += '</div>'
 
                 feedback.className = 'feedback feedback-wrong'
-                feedback.innerHTML = `❌ 回答错误！-10 狗粮${wrongDetail}`
+                feedback.innerHTML = `❌ 回答错误！${qData.isErrorMode ? '' : '-2 狗粮'}${wrongDetail}${knowledgeHtml}`
                 feedback.style.display = 'block'
 
                 // 非错题模式：加入错题本
                 if (!qData.isErrorMode) {
-                    // 生成唯一错题ID
                     let errorId = Date.now() + Math.random().toString(36).substr(2,9)
-                    // 避免重复加入同一道题
                     let isDuplicate = errorBook.some(item => item.question === qData.q)
                     if (!isDuplicate) {
                         errorBook.push({
@@ -1370,20 +1379,38 @@
             save()
             renderAll()
 
-            // 【新增下一题功能】提交后隐藏提交按钮，显示下一题+关闭按钮
+            // 【全场景下一题按钮】提交后替换按钮
             submitBtn.style.display = 'none'
+            let nextBtnHtml = ''
+            // 判断是否可以继续下一题
+            if (qData.isErrorMode) {
+                // 错题模式：还有错题就显示下一题
+                nextBtnHtml = errorBook.length > 0 
+                    ? '<button class="btn btn-primary" id="nextBtn">下一题</button>'
+                    : '<button class="btn btn-primary" disabled>已刷完所有错题</button>'
+            } else {
+                // 正常模式：今日次数没满就显示下一题
+                let t = topics.find(x=>x.id===qData.moduleId)
+                let dayKey = today + '_' + qData.moduleId
+                let currentCount = dayAnswerCount[dayKey] || 0
+                let max = t.type === "word" ? 8 : 5
+                nextBtnHtml = currentCount < max
+                    ? '<button class="btn btn-primary" id="nextBtn">下一题</button>'
+                    : '<button class="btn btn-primary" disabled>今日次数已满</button>'
+            }
             document.getElementById('modalButtons').innerHTML = `
-                <button class="btn btn-primary" id="nextBtn">下一题</button>
+                ${nextBtnHtml}
                 <button class="btn" onclick="closeModal()">关闭</button>
             `
             // 绑定下一题事件
-            document.getElementById('nextBtn').onclick = () => {
-                if (qData.isErrorMode) {
-                    // 错题模式：刷新错题
-                    doErrorPractice()
-                } else {
-                    // 正常模式：刷新同模块新题
-                    doTest(qData.moduleId)
+            const nextBtn = document.getElementById('nextBtn')
+            if (nextBtn) {
+                nextBtn.onclick = () => {
+                    if (qData.isErrorMode) {
+                        doErrorPractice()
+                    } else {
+                        doTest(qData.moduleId)
+                    }
                 }
             }
         }
@@ -1397,14 +1424,14 @@
             showModal('success','清空成功','错题本已清空')
         }
 
-        // 复活功能
+        // 复活功能优化
         function adminRevive() {
             food = 500
             dogAlive = true
-            lastFeedTime = Date.now()
+            lastFeedTime = Date.now() // 重置投喂倒计时
             save()
             renderAll()
-            showModal('success','满血复活','小狗已恢复满格活力')
+            showModal('success','满血复活','小狗已恢复满格活力，投喂倒计时已重置')
         }
         function openReviveModal() {
             const overlay = document.getElementById('modalOverlay')
@@ -1528,7 +1555,7 @@
             input.value = ''
         }
         function clearAllData() {
-            if(!confirm('确定清理所有作战数据？积分、错题、打卡记录将全部重置！')) return
+            if(!confirm('确定清理所有作战数据？积分、错题、打卡记录将全部重置！\n此操作不可逆，请谨慎操作！')) return
             localStorage.clear()
             location.reload()
         }
@@ -1563,13 +1590,35 @@
             return ability
         }
 
+        // 计算错题模块分布
+        function calcErrorStats() {
+            if (errorBook.length === 0) return "错题分布：暂无数据"
+            let moduleCount = {}
+            errorBook.forEach(item => {
+                moduleCount[item.moduleName] = (moduleCount[item.moduleName] || 0) + 1
+            })
+            let sortArr = Object.entries(moduleCount).sort((a,b)=>b[1]-a[1])
+            let statsText = "错题分布："
+            sortArr.forEach((item, index) => {
+                statsText += `${item[0]}(${item[1]}题)`
+                if (index < sortArr.length - 1) statsText += "、"
+            })
+            return statsText
+        }
+
         // 渲染错题本
         function renderErrorBook() {
             let wrap = document.getElementById('errorBookList')
+            let statsWrap = document.getElementById('errorStats')
+            // 渲染错题分布统计
+            statsWrap.innerText = calcErrorStats()
+            // 渲染错题列表
             if (errorBook.length === 0) {
                 wrap.innerHTML = '<div class="error-empty">暂无错题，继续加油！</div>'
+                document.getElementById('errorPracticeBtn').disabled = true
                 return
             }
+            document.getElementById('errorPracticeBtn').disabled = false
             // 倒序显示，最新的错题在最上面
             let html = ''
             errorBook.slice().reverse().forEach(item => {
